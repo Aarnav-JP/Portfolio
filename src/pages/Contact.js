@@ -5,14 +5,16 @@ import * as THREE from 'three'; // Import three.js
 
 // Styling for the section
 const ContactSection = styled.section`
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
+  height: 100%;
   color: #ffffff;
   padding: 0 10%;
   position: relative;
   overflow: hidden;
+  
 `;
 
 // Animation for galaxy background
@@ -51,6 +53,7 @@ const glowAnimation = keyframes`
 
 // Text container with fade-in animation
 const TextContainer = styled.div`
+z-index: 1;
   flex: 1;
   animation: ${fadeIn} 1s ease-out forwards;
 `;
@@ -62,6 +65,7 @@ const Title = styled.h1`
   background: linear-gradient(to right, #ff8c00, #e01e37); // Fluorescent gradient for text
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  
 `;
 
 // A subtitle or small text below the title
@@ -87,7 +91,7 @@ const ContactLink = styled.a`
   -webkit-background-clip: text;
   color: transparent;
   text-shadow: none;
-
+  z-index: 1;
   &:hover {
     animation: ${glowAnimation} 1.5s infinite alternate;
     text-shadow: 0 0 20px #ff0000, 0 0 30px #ff4500, 0 0 40px #ffd700;
@@ -107,6 +111,7 @@ const ContactDetails = styled.div`
   justify-content: center;
   gap: 30px;
   flex: 1;
+  z-index: 1;
   animation: ${fadeIn} 1.2s ease-out forwards;
 `;
 
@@ -139,103 +144,103 @@ const Footer = styled.footer`
 
 // Galaxy effect using three.js
 const createGalaxyEffect = (canvasRef) => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // Galaxy settings
-    const geometry = new THREE.BufferGeometry();
-    const material = new THREE.PointsMaterial({ color: "#FFFAFA", size: 1, sizeAttenuation: true });
-    const starsCount = 10000;
+  // Galaxy settings
+  const geometry = new THREE.BufferGeometry();
+  const material = new THREE.PointsMaterial({ color: "#FFFAFA", size: 1, sizeAttenuation: true });
+  const starsCount = 10000;
 
-    // Create stars
-    const positions = new Float32Array(starsCount * 3);
-    for (let i = 0; i < starsCount; i++) {
-        positions[i * 3] = Math.random() * 2000 - 1000;  // X
-        positions[i * 3 + 1] = Math.random() * 2000 - 1000;  // Y
-        positions[i * 3 + 2] = Math.random() * 2000 - 1000;  // Z
-    }
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  // Create stars
+  const positions = new Float32Array(starsCount * 3);
+  for (let i = 0; i < starsCount; i++) {
+    positions[i * 3] = Math.random() * 2000 - 1000;  // X
+    positions[i * 3 + 1] = Math.random() * 2000 - 1000;  // Y
+    positions[i * 3 + 2] = Math.random() * 2000 - 1000;  // Z
+  }
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
-    const stars = new THREE.Points(geometry, material);
-    scene.add(stars);
+  const stars = new THREE.Points(geometry, material);
+  scene.add(stars);
 
-    camera.position.z = 1000;
+  camera.position.z = 1000;
 
-    const animate = () => {
-        requestAnimationFrame(animate);
+  const animate = () => {
+    requestAnimationFrame(animate);
 
-        stars.rotation.x += 0.0005;
-        stars.rotation.y += 0.0005;
+    stars.rotation.x += 0.0005;
+    stars.rotation.y += 0.0005;
 
-        renderer.render(scene, camera);
-    };
+    renderer.render(scene, camera);
+  };
 
-    animate();
+  animate();
 };
 
 const Contact = () => {
-    const canvasRef = useRef(null);
+  const canvasRef = useRef(null);
 
-    useEffect(() => {
-        createGalaxyEffect(canvasRef); // Initiating the galaxy effect once the component is mounted
-    }, []);
+  useEffect(() => {
+    createGalaxyEffect(canvasRef); // Initiating the galaxy effect once the component is mounted
+  }, []);
 
-    return (
-        <ContactSection id="contact">
-            {/* Galaxy background */}
-            <canvas ref={canvasRef} style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100vh',  // Ensure it takes up the viewport height
-                zIndex: 0
-            }} />
+  return (
+    <ContactSection id="contact">
+      {/* Galaxy background */}
 
-            <TextContainer>
-                <Title>Contact</Title>
-                <Tagline>Feel free to reach out via email or connect with me on LinkedIn and GitHub.</Tagline>
-            </TextContainer>
+      <TextContainer>
+        <Title>Contact</Title>
+        <Tagline>Feel free to reach out via email or connect with me on LinkedIn and GitHub.</Tagline>
+      </TextContainer>
 
-            <ContactDetails>
-                {/* Email Contact Link with Icon */}
-                <ContactLink
-                    href="mailto:aarnav.jp@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <FaEnvelope size={40} color="#ff8c00" />
-                    <p>Email</p>
-                </ContactLink>
+      <ContactDetails>
+        {/* Email Contact Link with Icon */}
+        <ContactLink
+          href="mailto:aarnav.jp@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaEnvelope size={40} color="#ff8c00" />
+          <p>Email</p>
+        </ContactLink>
 
-                {/* LinkedIn Contact Link with Icon */}
-                <ContactLink
-                    href="https://www.linkedin.com/in/aarnavjp/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <FaLinkedin size={40} color="#0a66c2" />
-                    <p>LinkedIn</p>
-                </ContactLink>
+        {/* LinkedIn Contact Link with Icon */}
+        <ContactLink
+          href="https://www.linkedin.com/in/aarnavjp/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaLinkedin size={40} color="#0a66c2" />
+          <p>LinkedIn</p>
+        </ContactLink>
 
-                {/* GitHub Contact Link with Icon */}
-                <ContactLink
-                    href="https://github.com/Aarnav-JP"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <FaGithub size={40} color="#ffffff" />
-                    <p>GitHub</p>
-                </ContactLink>
-            </ContactDetails>
+        {/* GitHub Contact Link with Icon */}
+        <ContactLink
+          href="https://github.com/Aarnav-JP"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FaGithub size={40} color="#ffffff" />
+          <p>GitHub</p>
+        </ContactLink>
+      </ContactDetails>
 
-            <Footer>
-                {/* <ThankYouMessage>Thank you for visiting my portfolio!</ThankYouMessage> */}
-            </Footer>
-        </ContactSection>
-    );
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
+        }}
+      />
+    </ContactSection>
+  );
 };
 
 export default Contact;

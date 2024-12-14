@@ -42,10 +42,11 @@ const ExperienceSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 105vh;
+  height: 100%;
   color: #ffffff;
   position: relative;
   overflow: hidden; /* Hide overflow to prevent scroll */
+  margin: 50px
   padding: 20px;
   box-sizing: border-box;
   ${'' /* z-index: 1; */}
@@ -184,7 +185,7 @@ const Experience = () => {
             <canvas
                 ref={canvasRef}
                 style={{
-                    position: "absolute", // Make canvas fixed to cover the entire viewport
+                    position: "fixed", // Make canvas fixed to cover the entire viewport
                     top: 0,
                     left: 0,
                     width: '100%',

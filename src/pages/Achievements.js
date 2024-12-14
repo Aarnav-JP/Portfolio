@@ -11,8 +11,9 @@ const AchievementsSection = styled.section`
   color: #ffffff;
   position: relative;
   overflow: hidden;
-  padding: 20px;
-  height: 110vh;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  height: 100%;
 `;
 
 const AchievementsContainer = styled.div`
@@ -160,7 +161,7 @@ const Achievements = () => {
             <canvas
                 ref={canvasRef}
                 style={{
-                    position: 'absolute',
+                    position: 'fixed',
                     top: 0,
                     left: 0,
                     width: '100%',

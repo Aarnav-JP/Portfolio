@@ -56,7 +56,7 @@ const SkillsSection = styled.section`
   position: relative;
   overflow: hidden;
   background-color: #000000;
-  height: 100vh;
+  height: 100%;
 `;
 
 const GradientText = styled.h1`
@@ -229,7 +229,7 @@ const Skills = () => {
       </ContentWrapper>
 
       <canvas ref={canvasRef} style={{
-        position: 'absolute',
+        position: 'fixed',
         top: 0,
         left: 0,
         width: '100%',

@@ -171,7 +171,7 @@ const Home = () => {
 
             {/* Galaxy background canvas */}
             <canvas ref={canvasRef} style={{
-                position: 'absolute',
+                position: 'fixed',
                 top: 0,
                 left: 0,
                 width: '100%',

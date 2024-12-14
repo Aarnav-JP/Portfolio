@@ -13,7 +13,7 @@ const ProjectsSection = styled.section`
   color: #ffffff;
   position: relative;
   overflow: hidden;
-  height: 150vh;
+  height: 150%;
 `;
 
 const fadeIn = keyframes`
@@ -166,8 +166,8 @@ const Projects = () => {
                     top: 0,
                     left: 0,
                     width: "100%",
-                    height: "150vh",
-                    zIndex: -1,
+                    height: "100%",
+                    zIndex: 0,
                 }}
             />
         </ProjectsSection>
