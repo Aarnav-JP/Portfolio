@@ -1,13 +1,41 @@
+/* In your src/App.css or src/index.css */
+
+/* Reset margin, padding, and ensure full height */
+html,
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  height: 100%;
+  /* Make sure the body takes full height */
+  overflow: hidden;
+  /* Prevent scrollbars */
+  font-family: Arial, sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Define a gradient background and animate it */
+body {
+  background: linear-gradient(45deg, #ff6b6b, #f1c40f);
+  /* Define colors of the gradient */
+  background-size: 400% 400%;
+  /* Stretch the gradient for animation */
+  animation: gradientAnimation 10s ease infinite;
+  /* Animation name and duration */
+}
+
+/* Keyframes for the background animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+    /* Start from left */
+  }
+
+  50% {
+    background-position: 100% 50%;
+    /* Move to the right */
+  }
+
+  100% {
+    background-position: 0% 50%;
+    /* Return to the starting point */
+  }
 }
