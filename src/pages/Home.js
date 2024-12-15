@@ -4,20 +4,6 @@ import profileImage from '../assets/home_profile.jpg';
 import * as THREE from 'three';
 import Typed from 'typed.js'; // Import Typed directly
 
-// Reuse the background style from the Home page
-const HeroSection = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100vh;  // Ensures the section height fits the viewport
-  color: #ffffff;
-  padding: 0 10%;
-  position: relative;
-  overflow: hidden;  // Prevent overflow
-  flex-wrap: wrap; // Ensure responsive behavior when screen size reduces
-`;
-
-// Fade-in animation for content
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -28,36 +14,41 @@ const fadeIn = keyframes`
     transform: translateY(0);
   }
 `;
+const HeroSection = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%; 
+  color: #ffffff;
+  padding: 0 10%;
+  position: relative;
+  overflow: hidden;
+  flex-wrap: wrap;
 
-// Text container for the paragraph
+  @media (max-width: 1100px) {
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: space-evenly; /* Align content to the top */
+    padding: 5%; /* Adjust padding for better spacing */
+  }
+`;
+
 const TextContainer = styled.div`
   flex: 1;
   animation: ${fadeIn} 1s ease-out forwards;
   z-index: 1;
-  white-space: nowrap; // Prevent line breaks within single text element
-  margin-right: 40px;  // Add some margin to create space between text and image
-  max-width: 60%; // Ensures text container doesn't take too much space
+  white-space: nowrap; 
+  margin-right: 40px;  
+  max-width: 60%; 
+
+  @media (max-width: 1100px) {
+    margin-top: 50px;
+    margin-right: 0; /* Remove margin for stacked layout */
+    max-width: 100%; /* Allow full width for text */
+    text-align: center; /* Center-align text for smaller screens */
+    margin-bottom: 20px; /* Add spacing below text */
+  }
 `;
 
-// Title style for the Home section
-const Title = styled.h1`
-  font-size: 3.5rem;
-  margin: 0;
-  background: linear-gradient(to right, #ff8c00, #e01e37);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: block; // Ensure title stays in its own line
-`;
-
-// Tagline text style
-const Tagline = styled.p`
-  font-size: 1.3rem;
-  margin: 20px 0;
-  opacity: 0.8;
-  display: block; // Ensure tagline stays in its own line
-`;
-
-// Profile image container
 const ImageContainer = styled.div`
   flex: 1;
   display: flex;
@@ -66,18 +57,47 @@ const ImageContainer = styled.div`
   position: relative;
   animation: ${fadeIn} 1.2s ease-out forwards;
   z-index: 1;
-  max-width: 40%; // Ensures the profile image container doesn't take too much space
+  max-width: 40%; 
+
+  @media (max-width: 1100px) {
+    max-width: 60%; /* Reduce image container size for smaller screens */
+    margin-bottom: 20px; /* Reduce space below the image */
+  }
 `;
 
-// Profile image styling
 const ProfileImage = styled.img`
-  width: 80%; // Adjust the width to prevent the image from becoming too large
+  width: 80%; 
   height: auto;
   border-radius: 50%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    width: 70%; /* Reduce image size */
+  }
 `;
 
-// Scroll indicator
+const Title = styled.h1`
+  font-size: 3.5rem;
+  margin: 0;
+  background: linear-gradient(to right, #ff8c00, #e01e37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem; /* Reduce font size on smaller screens */
+  }
+`;
+
+const Tagline = styled.p`
+  font-size: 1.3rem;
+  margin: 20px 0;
+  opacity: 0.8;
+
+  @media (max-width: 768px) {
+    font-size: 1rem; /* Reduce font size on smaller screens */
+  }
+`;
+
 const ScrollIndicator = styled.div`
   position: absolute;
   bottom: 20px;
@@ -85,7 +105,87 @@ const ScrollIndicator = styled.div`
   transform: translateX(-50%);
   animation: ${fadeIn} 2s ease-out forwards infinite alternate;
   z-index: 1;
+
+  @media (max-width: 768px) {
+    bottom: 10px; /* Adjust position for smaller screens */
+  }
 `;
+
+
+// Reuse the background style from the Home page
+// const HeroSection = styled.section`
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   height: 100vh;  // Ensures the section height fits the viewport
+//   color: #ffffff;
+//   padding: 0 10%;
+//   position: relative;
+//   overflow: hidden;  // Prevent overflow
+//   flex-wrap: wrap; // Ensure responsive behavior when screen size reduces
+// `;
+
+// Fade-in animation for content
+
+
+// // Text container for the paragraph
+// const TextContainer = styled.div`
+//   flex: 1;
+//   animation: ${fadeIn} 1s ease-out forwards;
+//   z-index: 1;
+//   white-space: nowrap; // Prevent line breaks within single text element
+//   margin-right: 40px;  // Add some margin to create space between text and image
+//   max-width: 60%; // Ensures text container doesn't take too much space
+// `;
+
+// // Title style for the Home section
+// const Title = styled.h1`
+//   font-size: 3.5rem;
+//   margin: 0;
+//   background: linear-gradient(to right, #ff8c00, #e01e37);
+//   -webkit-background-clip: text;
+//   -webkit-text-fill-color: transparent;
+//   display: block; // Ensure title stays in its own line
+// `;
+
+// // Tagline text style
+// const Tagline = styled.p`
+//   font-size: 1.3rem;
+//   margin: 20px 0;
+//   opacity: 0.8;
+//   display: block; // Ensure tagline stays in its own line
+// `;
+
+// // Profile image container
+// const ImageContainer = styled.div`
+//   flex: 1;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: relative;
+//   animation: ${fadeIn} 1.2s ease-out forwards;
+//   z-index: 1;
+//   max-width: 40%; // Ensures the profile image container doesn't take too much space
+// `;
+
+// // Profile image styling
+// const ProfileImage = styled.img`
+//   width: 80%; // Adjust the width to prevent the image from becoming too large
+//   height: auto;
+//   border-radius: 50%;
+//   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+// `;
+
+// // Scroll indicator
+// const ScrollIndicator = styled.div`
+//   position: absolute;
+//   bottom: 20px;
+//   left: 50%;
+//   transform: translateX(-50%);
+//   animation: ${fadeIn} 2s ease-out forwards infinite alternate;
+//   z-index: 1;
+// `;
+
 
 // Galaxy background effect using three.js
 const createGalaxyEffect = (canvasRef) => {

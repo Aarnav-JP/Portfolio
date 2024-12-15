@@ -7,7 +7,7 @@ const EducationSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   color: #ffffff;
   padding: 0 5%;
   position: relative;
