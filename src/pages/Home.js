@@ -39,7 +39,10 @@ const TextContainer = styled.div`
   white-space: nowrap; 
   margin-right: 40px;  
   max-width: 60%; 
-
+  @media (max-width: 1288px) {
+    font-size: 0.9rem; /* Slightly reduce text size for smaller screens */
+    max-width: 55%; /* Adjust container width */
+  }
   @media (max-width: 1100px) {
     margin-top: 50px;
     margin-right: 0; /* Remove margin for stacked layout */
@@ -59,6 +62,10 @@ const ImageContainer = styled.div`
   z-index: 1;
   max-width: 40%; 
 
+  @media (max-width: 1288px) {
+    max-width: 32%; /* Reduce image container size by 20% */
+  }
+
   @media (max-width: 1100px) {
     max-width: 60%; /* Reduce image container size for smaller screens */
     margin-bottom: 20px; /* Reduce space below the image */
@@ -70,6 +77,10 @@ const ProfileImage = styled.img`
   height: auto;
   border-radius: 50%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 1288px) {
+    width: 64%; /* Reduce the image size by 20% */
+  }
 
   @media (max-width: 768px) {
     width: 70%; /* Reduce image size */
@@ -83,6 +94,9 @@ const Title = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
+  @media (max-width: 1288px) {
+    font-size: 3rem; /* Slightly reduce font size for medium screens */
+  }
   @media (max-width: 768px) {
     font-size: 2.5rem; /* Reduce font size on smaller screens */
   }
@@ -93,6 +107,9 @@ const Tagline = styled.p`
   margin: 20px 0;
   opacity: 0.8;
 
+  @media (max-width: 1288px) {
+    font-size: 1.1rem; /* Slightly reduce font size for medium screens */
+  }
   @media (max-width: 768px) {
     font-size: 1rem; /* Reduce font size on smaller screens */
   }
