@@ -147,14 +147,25 @@ const Experience = () => {
             <ExperienceTitle>Experience</ExperienceTitle>
             <ExperienceContent>
                 <ExperienceEntry>
+                    <EntryTitle href="https://www.marvell.com/" target="_blank" rel="noopener noreferrer">
+                        Marvell Technology
+                    </EntryTitle>
+                    <EntrySubtitle>Software Engineering Intern (May 2025 – July 2025)</EntrySubtitle>
+                    <EntryDetails>
+                        • Worked on DPDK/ODP/VPP drivers for Marvell Octeon TX2/TX3 platforms, achieving 25% latency reduction and 10,000+ TLS/IPsec connections/sec via zero-copy buffer optimization and ARMv8-A NEON crypto acceleration.
+                        <br />
+                        • Designed C/C++ cryptographic modules (AES-GCM/SHA-3) with 20% higher CPU utilization through lock-free ring buffers and thread pinning on Linux PREEMPT-RT, ensuring ISO 26262 compliance for safety-critical systems.
+                    </EntryDetails>
+                </ExperienceEntry>
+                <ExperienceEntry>
                     <EntryTitle href="https://unix-plus.com/" target="_blank" rel="noopener noreferrer">
                         UnixPlus Infotech
                     </EntryTitle>
-                    <EntrySubtitle>Web Development Intern (July 2023 – Sept 2023) </EntrySubtitle>
+                    <EntrySubtitle>Web Development Intern (July 2023 – September 2023)</EntrySubtitle>
                     <EntryDetails>
-                        • Developed front-end for cloud-based games using MERN Stack, AWS, and Firebase, improving load time by 20% for 5,000+ users.
+                        • Built scalable cloud gaming interfaces using React.js, Node.js, and AWS S3, reducing front-end load time by 20% for 5,000+ concurrent users through code-splitting and CDN caching.
                         <br />
-                        • Designed login and console pages, supporting 3,000+ users, and built games that boosted user retention by 15%.
+                        • Revamped authentication flows and game consoles with Firebase Auth and Material-UI, increasing user retention by 15% and supporting 3,000+ daily active users via responsive design testing.
                     </EntryDetails>
                 </ExperienceEntry>
                 <ExperienceEntry>
@@ -163,22 +174,10 @@ const Experience = () => {
                     </EntryTitle>
                     <EntrySubtitle>Apprenticeship (July 2022)</EntrySubtitle>
                     <EntryDetails>
-                        • Integrated learning experience that helped in learning about machine learning.
-                        <br />
-                        • Practical industry applications through an immersive experience.
+                        • Mastered 8 core ML domains—including Supervised Learning, Deep Neural Networks (DNNs), and Reinforcement Learning—through hands-on projects, achieving top 10% cohort performance in probabilistic modeling and causal inference challenges.
                     </EntryDetails>
                 </ExperienceEntry>
-                <ExperienceEntry>
-                    <EntryTitle href="https://fitfeast.in/" target="_blank" rel="noopener noreferrer">
-                        Fitfeast
-                    </EntryTitle>
-                    <EntrySubtitle>Web Development Intern (Aug 2022 – Sept 2022)</EntrySubtitle>
-                    <EntryDetails>
-                        • Built front-end with HTML/CSS, JavaScript, and WordPress, increasing organic traffic by 10% through SEO.
-                        <br />
-                        • Maintained and updated site, boosting performance by 20%.
-                    </EntryDetails>
-                </ExperienceEntry>
+
             </ExperienceContent>
 
             {/* Galaxy animation canvas */}
