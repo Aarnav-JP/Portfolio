@@ -156,9 +156,9 @@ const Experience = () => {
                     </EntryTitle>
                     <EntrySubtitle>Software Engineering Intern (May 2025 – July 2025)</EntrySubtitle>
                     <EntryDetails>
-                        • Worked on DPDK/ODP/VPP drivers for Marvell Octeon TX2/TX3 platforms, achieving 25% latency reduction and 10,000+ TLS/IPsec connections/sec via zero-copy buffer optimization and ARMv8-A NEON crypto acceleration.
+                        – Developed a high-performance DPDK-based stress test tool for iterative Rx/Tx offload reconfiguration on Marvell CN9K platforms, validating port stability under 1,000+ reconfiguration cycles with zero packet loss and &lt; 2% performance degradation.
                         <br />
-                        • Designed C/C++ cryptographic modules (AES-GCM/SHA-3) with 20% higher CPU utilization through lock-free ring buffers and thread pinning on Linux PREEMPT-RT, ensuring ISO 26262 compliance for safety-critical systems.
+                        – Resolved critical performance and stability issues, including cnxk mac test halts and suboptimal fwd-perf throughput, achieving a ∼15% latency improvement and raising forwarding performance to target thresholds across multiple firmware/Rx mode configurations.
                     </EntryDetails>
                 </ExperienceEntry>
                 <ExperienceEntry>
