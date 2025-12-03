@@ -32,6 +32,19 @@ const GlobalStyle = createGlobalStyle`
   section p {
     font-size: 1.2rem;
   }
+
+  @media (max-width: 900px) {
+    section {
+      padding: 80px 16px;
+      min-height: auto;
+    }
+    section h1 {
+      font-size: 2rem;
+    }
+    section p {
+      font-size: 1.05rem;
+    }
+  }
 `;
 
 export default GlobalStyle;

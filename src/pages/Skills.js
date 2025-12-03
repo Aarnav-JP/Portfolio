@@ -57,6 +57,7 @@ const SkillsSection = styled.section`
   overflow: hidden;
   background-color: #000000;
   height: 100%;
+  padding: 0 5%;
 `;
 
 const GradientText = styled.h1`
@@ -70,6 +71,10 @@ const GradientText = styled.h1`
   position: relative;
   z-index: 1;
   margin-top: -40px; // Shift header upwards
+  @media (max-width: 900px) {
+    font-size: 2.2rem;
+    margin-top: 0;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -79,12 +84,20 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: -20px; // Shift content upwards
+  @media (max-width: 900px) {
+    margin-top: 0;
+    width: 100%;
+  }
 `;
 
 const CardsWrapper = styled.div`
   display: flex;
   gap: 20px;
   margin-bottom: 30px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    width: 100%;
+  }
 `;
 
 const SkillCard = styled.div`
@@ -100,6 +113,9 @@ const SkillCard = styled.div`
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  @media (max-width: 900px) {
+    width: 100%;
   }
 `;
 
@@ -135,12 +151,17 @@ const TechListTitle = styled.h3`
 
 const TechList = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 4fr); // Three columns layout
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   font-size: 20px;
   color: #e0e0e0;
   text-align: center;
   max-width: 800px; // Limit width to avoid too wide layout
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    font-size: 18px;
+    width: 100%;
+  }
 
   span {
     transition: color 0.3s ease, transform 0.3s ease;

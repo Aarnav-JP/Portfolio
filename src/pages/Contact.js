@@ -14,18 +14,17 @@ const ContactSection = styled.section`
   padding: 0 10%;
   position: relative;
   overflow: hidden;
-  
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 6%;
+    text-align: center;
+    gap: 24px;
+  }
 `;
 
-// Animation for galaxy background
-const galaxyAnimation = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-`;
+// (removed unused galaxyAnimation)
 
 // Animation for fade-in effect
 const fadeIn = keyframes`
@@ -56,6 +55,9 @@ const TextContainer = styled.div`
 z-index: 1;
   flex: 1;
   animation: ${fadeIn} 1s ease-out forwards;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 // Title text in the Contact section
@@ -65,7 +67,9 @@ const Title = styled.h1`
   background: linear-gradient(to right, #ff8c00, #e01e37); // Fluorescent gradient for text
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
+  @media (max-width: 900px) {
+    font-size: 2.4rem;
+  }
 `;
 
 // A subtitle or small text below the title
@@ -73,6 +77,9 @@ const Tagline = styled.p`
   font-size: 1.3rem;
   margin: 20px 0;
   opacity: 0.8;
+  @media (max-width: 900px) {
+    font-size: 1.05rem;
+  }
 `;
 
 // Link buttons with glowing hover effects (for social links)
@@ -113,6 +120,9 @@ const ContactDetails = styled.div`
   flex: 1;
   z-index: 1;
   animation: ${fadeIn} 1.2s ease-out forwards;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 // const ScrollIndicator = styled.div`
@@ -125,15 +135,7 @@ const ContactDetails = styled.div`
 //   color: #ffffff;
 // `;
 
-const Footer = styled.footer`
-  text-align: center;
-  padding: 5px 10px; /* Further reduced padding */
-  width: 100%;
-  background: linear-gradient(135deg, #2d2e32, #1b1c20);  /* Same gradient as Contact */
-  position: fixed;
-  bottom: 0;
-  left: 0;
-`;
+// (removed unused Footer)
 
 // const ThankYouMessage = styled.p`
 //   font-size: 1.2rem; /* Further reduced size */

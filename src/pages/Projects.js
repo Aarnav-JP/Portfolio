@@ -4,8 +4,8 @@ import * as THREE from "three";
 import { FaGithub } from "react-icons/fa";
 
 const ProjectsSection = styled.section`
-  min-height: 100vh; 
-  padding-top: 80px;
+    min-height: 100vh; 
+    padding-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,12 @@ const ProjectsSection = styled.section`
   color: #ffffff;
   position: relative;
   overflow: hidden;
-  height: 150%;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: auto;
+    @media (max-width: 900px) {
+        padding-top: 70px;
+    }
 `;
 
 const fadeIn = keyframes`
@@ -29,6 +34,9 @@ const ProjectTitleName = styled.h3`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   z-index: 1;
+    @media (max-width: 900px) {
+        font-size: 2rem;
+    }
 `;
 
 
@@ -37,8 +45,8 @@ const ProjectCard = styled.div`
   padding: 15px;
   border-radius: 10px;
   margin: 15px;
-  width: 90%;
-  max-width: 600px;
+    width: 90%;
+    max-width: 680px;
   animation: ${fadeIn} 1s ease-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 1;
@@ -115,11 +123,11 @@ const Projects = () => {
             <ProjectCard>
                 <ProjectTitle>HireMatrix - Online Coding Assessment Platform</ProjectTitle>
                 <ProjectSubtitle>
-                
+
                     Technology: MERN | <a href="https://github.com/Sanskar84/HIRE-MATRIX" target="_blank" rel="noopener noreferrer" style={{ margin: '10px' }}>
                         <FaGithub color="#ffffff" />
                     </a> |
-                    <a href="https://hire-matrix-frontend.vercel.app/" style={{ color: "#ffffff",margin: '10px'}}>Link</a>
+                    <a href="https://hire-matrix-frontend.vercel.app/" style={{ color: "#ffffff", margin: '10px' }}>Link</a>
                 </ProjectSubtitle>
                 <ProjectDescription>
                     • A MERN stack-based coding assessment platform enabling companies to create and manage tests,
@@ -132,8 +140,8 @@ const Projects = () => {
             <ProjectCard>
                 <ProjectTitle>Distributed LMS with LLM-based Tutoring and Raft-based Data Consistency</ProjectTitle>
                 <ProjectSubtitle>Technology: Python | <a href="https://github.com/Aarnav-JP/Distributed_LMS" target="_blank" rel="noopener noreferrer" style={{ margin: '10px' }}>
-                        <FaGithub color="#ffffff" />
-                    </a></ProjectSubtitle>
+                    <FaGithub color="#ffffff" />
+                </a></ProjectSubtitle>
                 <ProjectDescription>
                     • Developed a distributed Learning Management System (LMS) with integrated lightweight language model (LLM)
                     for real-time, CPU-optimized tutoring support and automated student-instructor interactions, improving
@@ -148,8 +156,8 @@ const Projects = () => {
             <ProjectCard>
                 <ProjectTitle>Path Finder, an application of Dijkstra's algorithm</ProjectTitle>
                 <ProjectSubtitle>Technology: React JS | <a href="https://github.com/Aarnav-JP/PathFinder" target="_blank" rel="noopener noreferrer" style={{ margin: '10px' }}>
-                        <FaGithub color="#ffffff" />
-                    </a>  </ProjectSubtitle>
+                    <FaGithub color="#ffffff" />
+                </a>  </ProjectSubtitle>
                 <ProjectDescription>
                     • Developed an interactive Pathfinding Visualizer in React, enabling real-time visualization of Dijkstra’s
                     algorithm with dynamic grid manipulation and user input for start, finish, and obstacles.

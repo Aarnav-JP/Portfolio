@@ -14,6 +14,10 @@ const AchievementsSection = styled.section`
   padding-top: 50px;
   padding-bottom: 50px;
   height: 100%;
+    @media (max-width: 900px) {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
 `;
 
 const AchievementsContainer = styled.div`
@@ -31,6 +35,9 @@ background: linear-gradient(to right, #ff8c00, #e01e37);
   margin-bottom: 20px;
   text-align: center;
   z-index: 1;
+    @media (max-width: 900px) {
+        font-size: 2rem;
+    }
 `;
 
 const AchievementItem = styled.div`

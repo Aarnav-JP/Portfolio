@@ -12,7 +12,9 @@ const EducationSection = styled.section`
   padding: 0 5%;
   position: relative;
   overflow: hidden;
-  
+  @media (max-width: 900px) {
+    padding: 80px 6% 40px;
+  }
 `;
 
 const Heading = styled.h1`
@@ -31,6 +33,10 @@ const Timeline = styled.div`
   padding-left: 20px;
   border-left: 2px solid rgba(255, 255, 255, 0.3);
   z-index: 1;
+  @media (max-width: 900px) {
+    width: 100%;
+    margin: 20px 0;
+  }
 `;
 
 const TimelineItem = styled.div`
@@ -91,99 +97,99 @@ const ScrollIndicator = styled.div`
 `;
 
 const createGalaxyEffect = (canvasRef) => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
+  renderer.setSize(window.innerWidth, window.innerHeight);
 
-    const geometry = new THREE.BufferGeometry();
-    const material = new THREE.PointsMaterial({ color: "#FFFAFA", size: 1, sizeAttenuation: true });
-    const starsCount = 10000;
+  const geometry = new THREE.BufferGeometry();
+  const material = new THREE.PointsMaterial({ color: "#FFFAFA", size: 1, sizeAttenuation: true });
+  const starsCount = 10000;
 
-    const positions = new Float32Array(starsCount * 3);
-    for (let i = 0; i < starsCount; i++) {
-        positions[i * 3] = Math.random() * 2000 - 1000;
-        positions[i * 3 + 1] = Math.random() * 2000 - 1000;
-        positions[i * 3 + 2] = Math.random() * 2000 - 1000;
-    }
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  const positions = new Float32Array(starsCount * 3);
+  for (let i = 0; i < starsCount; i++) {
+    positions[i * 3] = Math.random() * 2000 - 1000;
+    positions[i * 3 + 1] = Math.random() * 2000 - 1000;
+    positions[i * 3 + 2] = Math.random() * 2000 - 1000;
+  }
+  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
-    const stars = new THREE.Points(geometry, material);
-    scene.add(stars);
+  const stars = new THREE.Points(geometry, material);
+  scene.add(stars);
 
-    camera.position.z = 1000;
+  camera.position.z = 1000;
 
-    const animate = () => {
-        requestAnimationFrame(animate);
+  const animate = () => {
+    requestAnimationFrame(animate);
 
-        stars.rotation.x += 0.0005;
-        stars.rotation.y += 0.0005;
+    stars.rotation.x += 0.0005;
+    stars.rotation.y += 0.0005;
 
-        renderer.render(scene, camera);
-    };
+    renderer.render(scene, camera);
+  };
 
-    animate();
+  animate();
 };
 
 const Education = () => {
-    const canvasRef = useRef(null);
+  const canvasRef = useRef(null);
 
-    useEffect(() => {
-        createGalaxyEffect(canvasRef);
+  useEffect(() => {
+    createGalaxyEffect(canvasRef);
 
-        return () => { };
-    }, []);
+    return () => { };
+  }, []);
 
-    return (
-        <EducationSection id="education">
-            <Heading>Education</Heading>
-            <Timeline>
-                <TimelineItem>
-                    <TimelineNode />
-                    <Card>
-                        <CardHeader>Birla Institute of Science and Technology (BITS) - Pilani</CardHeader>
-                        <CardDetails>
-                            Masters of Engineering in Computer Science<br />
-                            Aug 2024 – June 2026 | Pilani, Rajasthan
-                        </CardDetails>
-                    </Card>
-                </TimelineItem>
-                <TimelineItem>
-                    <TimelineNode />
-                    <Card>
-                        <CardHeader>Bharati Vidyapeeth’s College of Engineering (GGSIPU), New Delhi</CardHeader>
-                        <CardDetails>
-                            Bachelors of Technology in Computer Science and Engineering (8.94 CGPA)<br />
-                            Aug 2020 – June 2024 | New Delhi
-                        </CardDetails>
-                    </Card>
-                </TimelineItem>
-                <TimelineItem>
-                    <TimelineNode />
-                    <Card>
-                        <CardHeader>St. Andrews Scots Sr Sec School, IP Extension</CardHeader>
-                        <CardDetails>
-                            12th Standard in PCM with Computer Science (CBSE Board - 95%)<br />
-                            April 2019 – March 2020 | New Delhi
-                        </CardDetails>
-                    </Card>
-                </TimelineItem>
-            </Timeline>
-            <ScrollIndicator>↓</ScrollIndicator>
+  return (
+    <EducationSection id="education">
+      <Heading>Education</Heading>
+      <Timeline>
+        <TimelineItem>
+          <TimelineNode />
+          <Card>
+            <CardHeader>Birla Institute of Science and Technology (BITS) - Pilani</CardHeader>
+            <CardDetails>
+              Masters of Engineering in Computer Science<br />
+              Aug 2024 – June 2026 | Pilani, Rajasthan
+            </CardDetails>
+          </Card>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineNode />
+          <Card>
+            <CardHeader>Bharati Vidyapeeth’s College of Engineering (GGSIPU), New Delhi</CardHeader>
+            <CardDetails>
+              Bachelors of Technology in Computer Science and Engineering (8.94 CGPA)<br />
+              Aug 2020 – June 2024 | New Delhi
+            </CardDetails>
+          </Card>
+        </TimelineItem>
+        <TimelineItem>
+          <TimelineNode />
+          <Card>
+            <CardHeader>St. Andrews Scots Sr Sec School, IP Extension</CardHeader>
+            <CardDetails>
+              12th Standard in PCM with Computer Science (CBSE Board - 95%)<br />
+              April 2019 – March 2020 | New Delhi
+            </CardDetails>
+          </Card>
+        </TimelineItem>
+      </Timeline>
+      <ScrollIndicator>↓</ScrollIndicator>
 
-            <canvas
-                ref={canvasRef}
-                style={{
-                    position: "fixed",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    zIndex: 0,
-                }}
-            />
-        </EducationSection>
-    );
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 0,
+        }}
+      />
+    </EducationSection>
+  );
 };
 
 export default Education;

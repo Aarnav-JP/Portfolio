@@ -46,11 +46,15 @@ const ExperienceSection = styled.section`
   color: #ffffff;
   position: relative;
   overflow: hidden; /* Hide overflow to prevent scroll */
-  margin: 50px
+    margin: 50px;
   padding: 20px;
   box-sizing: border-box;
   ${'' /* z-index: 1; */}
   ${'' /* background-color: #000000; */}
+    @media (max-width: 900px) {
+        margin: 20px 0;
+        padding: 10px;
+    }
   
 `;
 
