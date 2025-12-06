@@ -132,12 +132,11 @@ const CubeFace = styled.div`
 
 // Galaxy background effect using three.js
 const createGalaxyEffect = (canvasRef) => {
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-
-  // Galaxy settings
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);  // Galaxy settings
   const geometry = new THREE.BufferGeometry();
   const material = new THREE.PointsMaterial({ color: "#FFFAFA", size: 1, sizeAttenuation: true });
   const starsCount = 10000;
@@ -171,11 +170,20 @@ const createGalaxyEffect = (canvasRef) => {
 const About = () => {
   const canvasRef = useRef(null);
 
-  useEffect(() => {
-    createGalaxyEffect(canvasRef); // Initiating the galaxy effect once the component is mounted
-  }, []);
-
-  return (
+    useEffect(() => {
+        createGalaxyEffect(canvasRef);
+        
+        const handleResize = () => {
+            if (canvasRef.current) {
+                canvasRef.current.width = window.innerWidth;
+                canvasRef.current.height = window.innerHeight;
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        handleResize();
+        
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);  return (
     <AboutSection id="about">
       <TextContainer>
         <Title>About Me</Title>
