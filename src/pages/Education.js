@@ -12,6 +12,7 @@ const EducationSection = styled.section`
   padding: 0 5%;
   position: relative;
   overflow: hidden;
+  background-color: #000000;
   @media (max-width: 900px) {
     padding: 80px 6% 40px;
   }

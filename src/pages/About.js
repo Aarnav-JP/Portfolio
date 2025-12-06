@@ -13,6 +13,7 @@ const AboutSection = styled.section`
   padding: 0 10%;
   position: relative;
   overflow: hidden;
+  background-color: #000000;
   @media (max-width: 900px) {
     height: auto;
     padding: 80px 6% 40px;
@@ -202,7 +203,7 @@ const About = () => {
       </CubeContainer>
 
       {/* Galaxy background canvas */}
-      <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }} />
+      <canvas ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100vh', zIndex: 0, backgroundColor: '#000000' }} />
     </AboutSection>
   );
 };

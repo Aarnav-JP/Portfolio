@@ -24,6 +24,7 @@ const HeroSection = styled.section`
   position: relative;
   overflow: hidden;
   flex-wrap: wrap;
+  background-color: #000000;
 
   @media (max-width: 1100px) {
     flex-direction: column; /* Stack elements vertically */

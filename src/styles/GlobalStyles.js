@@ -2,6 +2,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    background-color: #000000;
+  }
+  
   body {
     margin: 0;
     padding: 0;
@@ -12,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     transition: background 0.3s ease, color 0.3s ease;
     background: ${({ theme }) => theme.background};
     background-size: 300% 300%;
+    background-color: #000000;
   }
 
   * {

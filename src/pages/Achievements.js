@@ -14,6 +14,7 @@ const AchievementsSection = styled.section`
   padding-top: 50px;
   padding-bottom: 50px;
   height: 100%;
+  background-color: #000000;
     @media (max-width: 900px) {
         padding-left: 6%;
         padding-right: 6%;
@@ -172,8 +173,9 @@ const Achievements = () => {
                     top: 0,
                     left: 0,
                     width: '100%',
-                    height: '100%',
+                    height: '100vh',
                     zIndex: 0,
+                    backgroundColor: '#000000',
                 }}
             />
         </AchievementsSection>

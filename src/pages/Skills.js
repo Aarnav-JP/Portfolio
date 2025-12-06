@@ -58,6 +58,10 @@ const SkillsSection = styled.section`
   background-color: #000000;
   height: 100%;
   padding: 0 5%;
+  
+  @media (max-width: 900px) {
+    min-height: 100vh;
+  }
 `;
 
 const GradientText = styled.h1`
@@ -254,8 +258,9 @@ const Skills = () => {
         top: 0,
         left: 0,
         width: '100%',
-        height: '100%',
+        height: '100vh',
         zIndex: 0,
+        backgroundColor: '#000000',
       }} />
     </SkillsSection>
   );

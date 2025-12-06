@@ -46,11 +46,11 @@ const ExperienceSection = styled.section`
   color: #ffffff;
   position: relative;
   overflow: hidden; /* Hide overflow to prevent scroll */
-    margin: 50px;
+  margin: 50px;
   padding: 20px;
   box-sizing: border-box;
+  background-color: #000000;
   ${'' /* z-index: 1; */}
-  ${'' /* background-color: #000000; */}
     @media (max-width: 900px) {
         margin: 20px 0;
         padding: 10px;
@@ -192,8 +192,9 @@ const Experience = () => {
                     top: 0,
                     left: 0,
                     width: '100%',
-                    height: '100%',  // Full height of the viewport
+                    height: '100vh',  // Full height of the viewport
                     zIndex: 0,  // Ensure the canvas stays in the background
+                    backgroundColor: "#000000",
                 }}
             />
         </ExperienceSection>

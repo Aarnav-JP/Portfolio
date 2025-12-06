@@ -14,13 +14,15 @@ const ContactSection = styled.section`
   padding: 0 10%;
   position: relative;
   overflow: hidden;
+  background-color: #000000;
 
   @media (max-width: 900px) {
     flex-direction: column;
     justify-content: center;
-    padding: 80px 6%;
+    padding: 80px 6% 60px;
     text-align: center;
     gap: 24px;
+    min-height: 100vh;
   }
 `;
 
@@ -237,8 +239,9 @@ const Contact = () => {
           top: 0,
           left: 0,
           width: '100%',
-          height: '100%',
+          height: '100vh',
           zIndex: 0,
+          backgroundColor: '#000000',
         }}
       />
     </ContactSection>

@@ -4,8 +4,8 @@ import * as THREE from "three";
 import { FaGithub } from "react-icons/fa";
 
 const ProjectsSection = styled.section`
-    min-height: 100vh; 
-    padding-top: 80px;
+  min-height: 100vh; 
+  padding-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,9 +13,10 @@ const ProjectsSection = styled.section`
   color: #ffffff;
   position: relative;
   overflow: hidden;
-    padding-left: 5%;
-    padding-right: 5%;
-    height: auto;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: auto;
+  background-color: #000000;
     @media (max-width: 900px) {
         padding-top: 70px;
     }
@@ -174,8 +175,9 @@ const Projects = () => {
                     top: 0,
                     left: 0,
                     width: "100%",
-                    height: "100%",
+                    height: "100vh",
                     zIndex: 0,
+                    backgroundColor: "#000000",
                 }}
             />
         </ProjectsSection>
