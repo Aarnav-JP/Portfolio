@@ -190,7 +190,7 @@ const Contact = () => {
 
   useEffect(() => {
     createGalaxyEffect(canvasRef);
-    
+
     const handleResize = () => {
       if (canvasRef.current) {
         canvasRef.current.width = window.innerWidth;
@@ -199,7 +199,7 @@ const Contact = () => {
     };
     window.addEventListener('resize', handleResize);
     handleResize();
-    
+
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 

@@ -115,7 +115,7 @@ const Projects = () => {
 
     useEffect(() => {
         createGalaxyEffect(canvasRef);
-        
+
         const handleResize = () => {
             if (canvasRef.current) {
                 canvasRef.current.width = window.innerWidth;
@@ -124,7 +124,7 @@ const Projects = () => {
         };
         window.addEventListener('resize', handleResize);
         handleResize();
-        
+
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
