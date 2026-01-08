@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import * as THREE from 'three';
+
 
 const AchievementsSection = styled.section`
   min-height: 100vh;
@@ -14,7 +14,7 @@ const AchievementsSection = styled.section`
   padding-top: 50px;
   padding-bottom: 50px;
   height: 100%;
-  background-color: #000000;
+
     @media (max-width: 900px) {
         padding-left: 6%;
         padding-right: 6%;
@@ -88,58 +88,9 @@ const CodingProfileButton = styled.a`
 `;
 
 // Galaxy background effect using three.js
-const createGalaxyEffect = (canvasRef) => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
 
-    const geometry = new THREE.BufferGeometry();
-    const material = new THREE.PointsMaterial({ color: "#FFFAFA", size: 1, sizeAttenuation: true });
-    const starsCount = 10000;
-
-    const positions = new Float32Array(starsCount * 3);
-    for (let i = 0; i < starsCount; i++) {
-        positions[i * 3] = Math.random() * 2000 - 1000;
-        positions[i * 3 + 1] = Math.random() * 2000 - 1000;
-        positions[i * 3 + 2] = Math.random() * 2000 - 1000;
-    }
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const stars = new THREE.Points(geometry, material);
-    scene.add(stars);
-
-    camera.position.z = 1000;
-
-    const animate = () => {
-        requestAnimationFrame(animate);
-        stars.rotation.x += 0.0005;
-        stars.rotation.y += 0.0005;
-        renderer.render(scene, camera);
-    };
-
-    animate();
-};
 
 const Achievements = () => {
-    const canvasRef = useRef(null);
-
-    useEffect(() => {
-        createGalaxyEffect(canvasRef);
-
-        const handleResize = () => {
-            if (canvasRef.current) {
-                canvasRef.current.width = window.innerWidth;
-                canvasRef.current.height = window.innerHeight;
-            }
-        };
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     return (
         <AchievementsSection id="achievements">
             <AchievementTitle>Achievements</AchievementTitle>
@@ -177,19 +128,7 @@ const Achievements = () => {
                 </CodingProfileLinks>
             </AchievementsContainer>
 
-            {/* Galaxy background canvas */}
-            <canvas
-                ref={canvasRef}
-                style={{
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100vh',
-                    zIndex: 0,
-                    backgroundColor: '#000000',
-                }}
-            />
+
         </AchievementsSection>
     );
 };

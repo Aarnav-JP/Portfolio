@@ -1,39 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import * as THREE from 'three';
 
-const createGalaxyEffect = (canvasRef) => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-    renderer.setSize(window.innerWidth, window.innerHeight);
 
-    const geometry = new THREE.BufferGeometry();
-    const material = new THREE.PointsMaterial({ color: "#FFFAFA", size: 1, sizeAttenuation: true });
-    const starsCount = 10000;
 
-    const positions = new Float32Array(starsCount * 3);
-    for (let i = 0; i < starsCount; i++) {
-        positions[i * 3] = Math.random() * 2000 - 1000;
-        positions[i * 3 + 1] = Math.random() * 2000 - 1000;
-        positions[i * 3 + 2] = Math.random() * 2000 - 1000;
-    }
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-    const stars = new THREE.Points(geometry, material);
-    scene.add(stars);
-
-    camera.position.z = 1000;
-
-    const animate = () => {
-        requestAnimationFrame(animate);
-        stars.rotation.x += 0.0005;
-        stars.rotation.y += 0.0005;
-        renderer.render(scene, camera);
-    };
-
-    animate();
-};
 
 
 // Main section containing the experience content
@@ -49,7 +18,7 @@ const ExperienceSection = styled.section`
   margin: 50px;
   padding: 20px;
   box-sizing: border-box;
-  background-color: #000000;
+  box-sizing: border-box;
   ${'' /* z-index: 1; */}
     @media (max-width: 900px) {
         margin: 20px 0;
@@ -131,74 +100,47 @@ const EntryTitle = styled.a`
 `;
 
 const Experience = () => {
-    const canvasRef = useRef(null);
+  return (
+    <ExperienceSection id="experience">
+      <ExperienceTitle>Experience</ExperienceTitle>
+      <ExperienceContent>
+        <ExperienceEntry>
+          <EntryTitle href="https://www.marvell.com/" target="_blank" rel="noopener noreferrer">
+            Marvell Technology
+          </EntryTitle>
+          <EntrySubtitle>Software Engineering Intern (May 2025 – July 2025)</EntrySubtitle>
+          <EntryDetails>
+            – Developed a high-performance DPDK-based stress test tool for iterative Rx/Tx offload reconfiguration on Marvell CN9K platforms, validating port stability under 1,000+ reconfiguration cycles with zero packet loss and &lt; 2% performance degradation.
+            <br />
+            – Resolved critical performance and stability issues, including cnxk mac test halts and suboptimal fwd-perf throughput, achieving a ∼15% latency improvement and raising forwarding performance to target thresholds across multiple firmware/Rx mode configurations.
+          </EntryDetails>
+        </ExperienceEntry>
+        <ExperienceEntry>
+          <EntryTitle href="https://unix-plus.com/" target="_blank" rel="noopener noreferrer">
+            UnixPlus Infotech
+          </EntryTitle>
+          <EntrySubtitle>Web Development Intern (July 2023 – September 2023)</EntrySubtitle>
+          <EntryDetails>
+            • Built scalable cloud gaming interfaces using React.js, Node.js, and AWS S3, reducing front-end load time by 20% for 5,000+ concurrent users through code-splitting and CDN caching.
+            <br />
+            • Revamped authentication flows and game consoles with Firebase Auth and Material-UI, increasing user retention by 15% and supporting 3,000+ daily active users via responsive design testing.
+          </EntryDetails>
+        </ExperienceEntry>
+        <ExperienceEntry>
+          <EntryTitle href="https://www.amazon.science/academic-engagements/amazon-launches-annual-ml-summer-school-in-india" target="_blank" rel="noopener noreferrer">
+            Amazon ML Summer School
+          </EntryTitle>
+          <EntrySubtitle>Apprenticeship (July 2022)</EntrySubtitle>
+          <EntryDetails>
+            • Mastered 8 core ML domains—including Supervised Learning, Deep Neural Networks (DNNs), and Reinforcement Learning—through hands-on projects, achieving top 10% cohort performance in probabilistic modeling and causal inference challenges.
+          </EntryDetails>
+        </ExperienceEntry>
 
-    useEffect(() => {
-        createGalaxyEffect(canvasRef);  // Call the galaxy effect function on component mount
-        const handleResize = () => {
-            if (canvasRef.current) {
-                canvasRef.current.width = window.innerWidth;
-                canvasRef.current.height = window.innerHeight;
-            }
-        };
-        window.addEventListener('resize', handleResize);
-        handleResize(); // Adjust on load
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+      </ExperienceContent>
 
-    return (
-        <ExperienceSection id="experience">
-            <ExperienceTitle>Experience</ExperienceTitle>
-            <ExperienceContent>
-                <ExperienceEntry>
-                    <EntryTitle href="https://www.marvell.com/" target="_blank" rel="noopener noreferrer">
-                        Marvell Technology
-                    </EntryTitle>
-                    <EntrySubtitle>Software Engineering Intern (May 2025 – July 2025)</EntrySubtitle>
-                    <EntryDetails>
-                        – Developed a high-performance DPDK-based stress test tool for iterative Rx/Tx offload reconfiguration on Marvell CN9K platforms, validating port stability under 1,000+ reconfiguration cycles with zero packet loss and &lt; 2% performance degradation.
-                        <br />
-                        – Resolved critical performance and stability issues, including cnxk mac test halts and suboptimal fwd-perf throughput, achieving a ∼15% latency improvement and raising forwarding performance to target thresholds across multiple firmware/Rx mode configurations.
-                    </EntryDetails>
-                </ExperienceEntry>
-                <ExperienceEntry>
-                    <EntryTitle href="https://unix-plus.com/" target="_blank" rel="noopener noreferrer">
-                        UnixPlus Infotech
-                    </EntryTitle>
-                    <EntrySubtitle>Web Development Intern (July 2023 – September 2023)</EntrySubtitle>
-                    <EntryDetails>
-                        • Built scalable cloud gaming interfaces using React.js, Node.js, and AWS S3, reducing front-end load time by 20% for 5,000+ concurrent users through code-splitting and CDN caching.
-                        <br />
-                        • Revamped authentication flows and game consoles with Firebase Auth and Material-UI, increasing user retention by 15% and supporting 3,000+ daily active users via responsive design testing.
-                    </EntryDetails>
-                </ExperienceEntry>
-                <ExperienceEntry>
-                    <EntryTitle href="https://www.amazon.science/academic-engagements/amazon-launches-annual-ml-summer-school-in-india" target="_blank" rel="noopener noreferrer">
-                        Amazon ML Summer School
-                    </EntryTitle>
-                    <EntrySubtitle>Apprenticeship (July 2022)</EntrySubtitle>
-                    <EntryDetails>
-                        • Mastered 8 core ML domains—including Supervised Learning, Deep Neural Networks (DNNs), and Reinforcement Learning—through hands-on projects, achieving top 10% cohort performance in probabilistic modeling and causal inference challenges.
-                    </EntryDetails>
-                </ExperienceEntry>
 
-            </ExperienceContent>
-
-            {/* Galaxy animation canvas */}
-            <canvas
-                ref={canvasRef}
-                style={{
-                    position: "fixed", // Make canvas fixed to cover the entire viewport
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100vh',  // Full height of the viewport
-                    zIndex: 0,  // Ensure the canvas stays in the background
-                    backgroundColor: "#000000",
-                }}
-            />
-        </ExperienceSection>
-    );
+    </ExperienceSection>
+  );
 };
 
 export default Experience;

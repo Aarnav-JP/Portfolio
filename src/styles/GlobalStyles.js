@@ -10,13 +10,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background: ${({ theme }) => theme.body};
+    background: transparent;
     color: ${({ theme }) => theme.text};
     height: 100vh;
     transition: background 0.3s ease, color 0.3s ease;
-    background: ${({ theme }) => theme.background};
-    background-size: 300% 300%;
-    background-color: #000000;
   }
 
   * {

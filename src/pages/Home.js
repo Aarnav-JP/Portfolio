@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import profileImage from '../assets/home_profile.jpg';
-import * as THREE from 'three';
 import Typed from 'typed.js';
 
 const fadeIn = keyframes`
@@ -24,7 +23,6 @@ const HeroSection = styled.section`
   position: relative;
   overflow: hidden;
   flex-wrap: wrap;
-  background-color: #000000;
 
   @media (max-width: 1100px) {
     flex-direction: column; /* Stack elements vertically */
@@ -134,59 +132,13 @@ const ScrollIndicator = styled.div`
 
 
 
-// Galaxy background effect using three.js
-const createGalaxyEffect = (canvasRef) => {
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);  // Galaxy settings
-  const geometry = new THREE.BufferGeometry();
-  const material = new THREE.PointsMaterial({ color: "#FFFAFA", size: 1, sizeAttenuation: true });
-  const starsCount = 10000;
 
-  // Create stars
-  const positions = new Float32Array(starsCount * 3);
-  for (let i = 0; i < starsCount; i++) {
-    positions[i * 3] = Math.random() * 2000 - 1000;  // X
-    positions[i * 3 + 1] = Math.random() * 2000 - 1000;  // Y
-    positions[i * 3 + 2] = Math.random() * 2000 - 1000;  // Z
-  }
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-  const stars = new THREE.Points(geometry, material);
-  scene.add(stars);
-
-  camera.position.z = 1000;
-
-  const animate = () => {
-    requestAnimationFrame(animate);
-
-    stars.rotation.x += 0.0005;
-    stars.rotation.y += 0.0005;
-
-    renderer.render(scene, camera);
-  };
-
-  animate();
-};
 
 const Home = () => {
-  const canvasRef = useRef(null);
   const titleRef = useRef(null);  // Reference for the title
   const taglineRef = useRef(null); // Reference for the tagline
 
   useEffect(() => {
-    createGalaxyEffect(canvasRef);
-
-    const handleResize = () => {
-      if (canvasRef.current) {
-        canvasRef.current.width = window.innerWidth;
-        canvasRef.current.height = window.innerHeight;
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    handleResize();
 
     // Initialize the typing animation for the name/title
     const typedTitle = new Typed(titleRef.current, {
@@ -210,7 +162,6 @@ const Home = () => {
       // Destroy instances on cleanup to prevent memory leaks
       typedTitle.destroy();
       typedTagline.destroy();
-      window.removeEventListener('resize', handleResize);
     };
   }, []); return (
     <HeroSection id="home">
@@ -222,16 +173,6 @@ const Home = () => {
         <ProfileImage src={profileImage} alt="Aarnav JP" />
       </ImageContainer>
       <ScrollIndicator>↓</ScrollIndicator>
-
-      {/* Galaxy background canvas */}
-      <canvas ref={canvasRef} style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100vh',
-        zIndex: 0
-      }} />
     </HeroSection>
   );
 };

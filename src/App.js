@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './styles/Theme';
 import GlobalStyle from './styles/GlobalStyles';
 import Navbar from './components/Navbar';
+import GalaxyBackground from './components/GalaxyBackground';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import About from './pages/About';
@@ -20,6 +21,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <GalaxyBackground />
       <GlobalStyle />
       <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
       <Home />

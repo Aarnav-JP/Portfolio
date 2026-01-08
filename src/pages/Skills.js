@@ -1,39 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import * as THREE from 'three';
 
-const createGalaxyEffect = (canvasRef) => {
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-  renderer.setSize(window.innerWidth, window.innerHeight);
 
-  const geometry = new THREE.BufferGeometry();
-  const material = new THREE.PointsMaterial({ color: "#FFFAFA", size: 1, sizeAttenuation: true });
-  const starsCount = 10000;
 
-  const positions = new Float32Array(starsCount * 3);
-  for (let i = 0; i < starsCount; i++) {
-    positions[i * 3] = Math.random() * 2000 - 1000;
-    positions[i * 3 + 1] = Math.random() * 2000 - 1000;
-    positions[i * 3 + 2] = Math.random() * 2000 - 1000;
-  }
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-  const stars = new THREE.Points(geometry, material);
-  scene.add(stars);
-
-  camera.position.z = 1000;
-
-  const animate = () => {
-    requestAnimationFrame(animate);
-    stars.rotation.x += 0.0005;
-    stars.rotation.y += 0.0005;
-    renderer.render(scene, camera);
-  };
-
-  animate();
-};
 
 const fadeIn = keyframes`
   from {
@@ -55,7 +24,6 @@ const SkillsSection = styled.section`
   color: #ffffff;
   position: relative;
   overflow: hidden;
-  background-color: #000000;
   height: 100%;
   padding: 0 5%;
   
@@ -177,26 +145,6 @@ const TechList = styled.div`
 `;
 
 const Skills = () => {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    if (canvasRef.current) {
-      createGalaxyEffect(canvasRef);
-    }
-
-    const handleResize = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      if (canvasRef.current) {
-        canvasRef.current.width = width;
-        canvasRef.current.height = height;
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
     <SkillsSection id="skills">
       <GradientText>Skills</GradientText>
@@ -253,15 +201,7 @@ const Skills = () => {
         </TechList>
       </ContentWrapper>
 
-      <canvas ref={canvasRef} style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100vh',
-        zIndex: 0,
-        backgroundColor: '#000000',
-      }} />
+
     </SkillsSection>
   );
 };
