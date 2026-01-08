@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Aarnav JP - Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to my personal portfolio website! This project showcases my skills, experience, and projects as a Software Engineer, Competitive Programmer, and Web Developer. It is built with React and features a dynamic, interactive Galaxy background powered by Three.js.
 
-## Available Scripts
+## Live Demo
 
-In the project directory, you can run:
+[Check out the live site here!](https://portfolio-chi-lake-68.vercel.app/) 
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+*   **Immersive 3D Background**: A custom-built Galaxy particle animation using `Three.js` that persists smoothly across page navigation.
+*   **Aesthetic Design**: Modern, responsive UI with a focus on visual appeal, built using `styled-components`.
+*   **Dark/Light Mode**: Toggle between themes to suit your preference.
+*   **Responsive Layout**: Fully optimized for desktops, tablets, and mobile devices.
+*   **Interactive Elements**: Typing animations with `typed.js` and smooth scroll navigation.
+*   **Performance Optimized**: Efficient animation rendering using a single WebGL context and `requestAnimationFrame`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+*   **Frontend Framework**: React.js
+*   **Styling**: Styled-Components
+*   **3D Graphics**: Three.js
+*   **Animations**: Framer Motion, Typed.js
+*   **Routing**: React Router DOM
+*   **Icons**: React Icons
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+To run this project locally on your machine, follow these steps:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+*   Node.js (v14 or higher recommended)
+*   npm (comes with Node.js)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/Aarnav-JP/Portfolio.git
+    cd Portfolio
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3.  **Start the development server:**
+    ```bash
+    npm start
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    The app will open in development mode at [http://localhost:3000](http://localhost:3000) in your browser.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Deployment
 
-## Learn More
+This project is set up for easy deployment on [Vercel](https://vercel.com/).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1.  Push your code to a GitHub repository.
+2.  Import the project into Vercel.
+3.  Vercel will automatically detect the Create React App settings and deploy your site.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Directory Structure
 
-### Code Splitting
+```
+src/
+├── assets/          # Images and static assets
+├── components/      # Reusable components (GalaxyBackground, Navbar, etc.)
+├── pages/           # Individual page components (Home, About, Projects, etc.)
+├── styles/          # Global styles and theme definitions
+├── App.js           # Main application component
+└── index.js         # Entry point
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contact
 
-### Analyzing the Bundle Size
+Feel free to reach out to me!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+*   **LinkedIn**: [Aarnav JP](https://www.linkedin.com/in/aarnavjp/)
+*   **GitHub**: [Aarnav-JP](https://github.com/Aarnav-JP)
+*   **Email**: [aarnavjp@gmail.com]
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Built with ❤️ by Aarnav JP*
