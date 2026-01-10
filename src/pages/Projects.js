@@ -118,16 +118,20 @@ const Projects = () => {
       </ProjectCard>
 
       <ProjectCard>
-        <ProjectTitle>Path Finder, an application of Dijkstra's algorithm</ProjectTitle>
-        <ProjectSubtitle>Technology: React JS | <a href="https://github.com/Aarnav-JP/PathFinder" target="_blank" rel="noopener noreferrer" style={{ margin: '10px' }}>
+        <ProjectTitle>Pathfinder Visualizer</ProjectTitle>
+        <ProjectSubtitle>Technology: React.js, CSS3 | <a href="https://github.com/Aarnav-JP/PathFinder" target="_blank" rel="noopener noreferrer" style={{ margin: '10px' }}>
           <FaGithub color="#ffffff" />
-        </a>  </ProjectSubtitle>
+        </a> | <a href="https://path-finder-red.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ color: "#ffffff", margin: '10px' }}>Live Demo</a>
+        </ProjectSubtitle>
         <ProjectDescription>
-          • Developed an interactive Pathfinding Visualizer in React, enabling real-time visualization of Dijkstra’s
-          algorithm with dynamic grid manipulation and user input for start, finish, and obstacles.
+          – Architected an interactive Pathfinding Visualizer supporting Dijkstra and A* (A-Star) algorithms to solve
+          complex grid-based routing problems in real-time.
           <p></p>
-          • Optimized algorithm performance and user experience by implementing efficient state management and animations
-          for shortest path and node traversal, enhancing the educational utility of the tool.
+          – Implemented Recursive Division Maze Generation and dynamic node manipulation (Start/End/Walls),
+          enabling users to simulate and test algorithms against unpredictable constraints.
+          <p></p>
+          – Engineered a custom Neon Design System using advanced CSS3 animations (zero UI libraries) and integrated
+          live performance metrics, achieving &lt; 15ms execution time for path calculations.
         </ProjectDescription>
       </ProjectCard>
 
