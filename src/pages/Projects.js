@@ -124,13 +124,13 @@ const Projects = () => {
         </a> | <a href="https://path-finder-red.vercel.app/" target="_blank" rel="noopener noreferrer" style={{ color: "#ffffff", margin: '10px' }}>Live Demo</a>
         </ProjectSubtitle>
         <ProjectDescription>
-          – Architected an interactive Pathfinding Visualizer supporting Dijkstra and A* (A-Star) algorithms to solve
+          • Architected an interactive Pathfinding Visualizer supporting Dijkstra and A* (A-Star) algorithms to solve
           complex grid-based routing problems in real-time.
           <p></p>
-          – Implemented Recursive Division Maze Generation and dynamic node manipulation (Start/End/Walls),
+          • Implemented Recursive Division Maze Generation and dynamic node manipulation (Start/End/Walls),
           enabling users to simulate and test algorithms against unpredictable constraints.
           <p></p>
-          – Engineered a custom Neon Design System using advanced CSS3 animations (zero UI libraries) and integrated
+          • Engineered a custom Neon Design System using advanced CSS3 animations (zero UI libraries) and integrated
           live performance metrics, achieving &lt; 15ms execution time for path calculations.
         </ProjectDescription>
       </ProjectCard>
