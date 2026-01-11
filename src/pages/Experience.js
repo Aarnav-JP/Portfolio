@@ -6,7 +6,9 @@ import styled from 'styled-components';
 
 
 // Main section containing the experience content
-const ExperienceSection = styled.section`
+import { motion } from "framer-motion";
+
+const ExperienceSection = styled(motion.section)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +103,13 @@ const EntryTitle = styled.a`
 
 const Experience = () => {
   return (
-    <ExperienceSection id="experience">
+    <ExperienceSection
+      id="experience"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
       <ExperienceTitle>Experience</ExperienceTitle>
       <ExperienceContent>
         <ExperienceEntry>

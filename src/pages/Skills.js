@@ -1,8 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-
-
-
+import { motion } from "framer-motion";
+import { FaReact, FaHtml5, FaCss3Alt, FaSass, FaBootstrap, FaNodeJs, FaJava, FaPython, FaGitAlt, FaAws, FaCode } from "react-icons/fa";
+import { SiJavascript, SiCplusplus, SiMongodb, SiMysql, SiFirebase } from "react-icons/si";
 
 const fadeIn = keyframes`
   from {
@@ -15,7 +15,7 @@ const fadeIn = keyframes`
   }
 `;
 
-const SkillsSection = styled.section`
+const SkillsSection = styled(motion.section)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +23,7 @@ const SkillsSection = styled.section`
   min-height: 100vh;
   color: #ffffff;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */ 
   height: 100%;
   padding: 0 5%;
   
@@ -42,7 +42,7 @@ const GradientText = styled.h1`
   animation: ${fadeIn} 1s ease-out forwards;
   position: relative;
   z-index: 1;
-  margin-top: -40px; // Shift header upwards
+  margin-top: -40px; 
   @media (max-width: 900px) {
     font-size: 2.2rem;
     margin-top: 0;
@@ -55,7 +55,7 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -20px; // Shift content upwards
+  margin-top: -20px; 
   @media (max-width: 900px) {
     margin-top: 0;
     width: 100%;
@@ -73,18 +73,22 @@ const CardsWrapper = styled.div`
 `;
 
 const SkillCard = styled.div`
-  background-color: rgba(248, 249, 250, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #333;
   padding: 20px;
-  border-radius: 8px;
-  width: 280px; /* Increased width from 250px to 280px */
+  border-radius: 15px;
+  width: 280px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 140, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
   }
   @media (max-width: 900px) {
     width: 100%;
@@ -93,25 +97,45 @@ const SkillCard = styled.div`
 
 const CardTitle = styled.h3`
   font-size: 1.2rem;
-  color:rgb(0, 255, 234);
+  color: rgb(0, 255, 234);
   margin-bottom: 10px;
 `;
 
 const CardDescription = styled.p`
   font-size: 1rem;
   color: #ddd;
-  line-height: 1.5; /* Consistent line spacing for readability */
-  text-align: left; /* Align text naturally to avoid uneven spacing */
-  font-weight: 500; /* Slight boldness for clarity */
-  background: linear-gradient(to right, #ffffff, #dcdcdc); /* Subtle gradient text */
+  line-height: 1.5;
+  text-align: left;
+  font-weight: 500;
+  background: linear-gradient(to right, #ffffff, #dcdcdc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-top: 10px; /* Add top spacing */
-  letter-spacing: 0.4px; /* Uniform spacing between letters */
+  margin-top: 10px;
+  letter-spacing: 0.4px;
   &:hover {
-    transform: scale(1.05); /* Add slight hover animation */
+    transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
   }
+`;
+
+const PlanetLabel = styled.span`
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.95);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ff8c00;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #ff8c00;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease, top 0.3s ease;
+  pointer-events: none;
+  z-index: 1000;
+  box-shadow: 0 0 15px rgba(0,0,0,0.8);
 `;
 
 const TechListTitle = styled.h3`
@@ -121,32 +145,129 @@ const TechListTitle = styled.h3`
   font-weight: bold;
 `;
 
-const TechList = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  font-size: 20px;
-  color: #e0e0e0;
-  text-align: center;
-  max-width: 800px; // Limit width to avoid too wide layout
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    font-size: 18px;
-    width: 100%;
-  }
+const orbitAnimation = keyframes`
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+`;
 
-  span {
-    transition: color 0.3s ease, transform 0.3s ease;
-    &:hover {
-      color: #ff8c00;
-      transform: scale(1.1);
-    }
+const counterRotate = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+`;
+
+const SolarSystemContainer = styled.div`
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+
+  @media (max-width: 900px) {
+    transform: scale(0.6);
+    margin: 40px auto; /* Increased gap */
+    width: 350px;
+    height: 350px;
+  }
+  @media (max-width: 450px) {
+    transform: scale(0.5);
+    margin: 0px auto; /* Increased gap */
+    width: 300px;
   }
 `;
 
+const Sun = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #ff8c00, #e01e37);
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(255, 140, 0, 0.8);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.2rem;
+`;
+
+const OrbitRing = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  
+  animation: ${orbitAnimation} linear infinite;
+  pointer-events: none;
+
+  &.inner { width: 220px; height: 220px; animation-duration: 20s; }
+  &.middle { width: 380px; height: 380px; animation-duration: 30s; }
+  &.outer { width: 540px; height: 540px; animation-duration: 40s; }
+`;
+
+const PlanetContainer = styled.div`
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px; /* Center using margins */
+  margin-left: -25px;
+  animation: ${counterRotate} linear infinite;
+  animation-duration: ${({ $duration }) => $duration || '20s'};
+  pointer-events: auto;
+`;
+
+const PlanetBody = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid #ff8c00;
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 20;
+
+  &:hover {
+    transform: scale(1.2);
+    background: #ff8c00;
+    color: black;
+    box-shadow: 0 0 25px rgba(255, 140, 0, 0.8);
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  &:hover + ${PlanetLabel} {
+    opacity: 1;
+    top: -55px;
+  }
+`;
+
+const PlanetWrapper = ({ className, icon, label, style, orbitDuration }) => (
+  <PlanetContainer className={className} style={style} $duration={orbitDuration}>
+    <PlanetBody>{icon}</PlanetBody>
+    <PlanetLabel>{label}</PlanetLabel>
+  </PlanetContainer>
+);
+
 const Skills = () => {
   return (
-    <SkillsSection id="skills">
+    <SkillsSection
+      id="skills"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
       <GradientText>Skills</GradientText>
 
       <ContentWrapper>
@@ -156,8 +277,6 @@ const Skills = () => {
             <CardDescription>
               Machine Learning has sharpened my ability to create data-driven models that solve complex problems. By working with algorithms and neural networks, I focus on extracting insights and making smarter predictions for real-world applications.
             </CardDescription>
-
-
           </SkillCard>
           <SkillCard>
             <CardTitle>Web Development</CardTitle>
@@ -172,36 +291,40 @@ const Skills = () => {
             </CardDescription>
           </SkillCard>
         </CardsWrapper>
-        <TechListTitle>Tech I'm Familiar With</TechListTitle>
-        <TechList>
-          <span>HTML5</span>
-          <span>CSS3</span>
-          <span>SASS</span>
-          <span>Bootstrap</span>
-          <span>JavaScript</span>
-          <span>jQuery</span>
-          <span>React.js</span>
-          {/* <span>Redux</span> */}
-          {/* <span>Jest</span> */}
-          {/* <span>Webpack</span> */}
-          <span>Node.js</span>
-          <span>Express.js</span>
-          <span>MongoDB</span>
-          <span>Firebase</span>
-          <span>Java</span>
-          <span>Python</span>
-          <span>Git</span>
-          <span>MySQL</span>
-          <span>C</span>
-          <span>C++</span>
-          {/* <span>Ruby on Rails</span> */}
-          {/* <span>Solidity</span> */}
-          {/* <span>Truffle</span> */}
-          {/* <span>Adobe XD</span> */}
-        </TechList>
+        <TechListTitle style={{ textAlign: 'center', marginTop: '40px' }}>Tech Stack Solar System</TechListTitle>
+        <SolarSystemContainer>
+          <Sun>
+            <FaCode size={40} />
+          </Sun>
+
+          {/* Inner Orbit (4 items) - Rotated 45 degrees */}
+          <OrbitRing className="inner">
+            <PlanetWrapper orbitDuration="20s" style={{ left: '85.4%', top: '14.6%' }} icon={<SiCplusplus size={24} />} label="C++" />
+            <PlanetWrapper orbitDuration="20s" style={{ left: '85.4%', top: '85.4%' }} icon={<FaJava size={24} />} label="Java" />
+            <PlanetWrapper orbitDuration="20s" style={{ left: '14.6%', top: '85.4%' }} icon={<FaPython size={24} />} label="Python" />
+            <PlanetWrapper orbitDuration="20s" style={{ left: '14.6%', top: '14.6%' }} icon={<SiJavascript size={24} />} label="JavaScript" />
+          </OrbitRing>
+
+          {/* Middle Orbit (5 items) */}
+          <OrbitRing className="middle">
+            <PlanetWrapper orbitDuration="30s" style={{ left: '100%', top: '50%' }} icon={<FaReact size={24} />} label="React" />
+            <PlanetWrapper orbitDuration="30s" style={{ left: '65.5%', top: '97.6%' }} icon={<FaHtml5 size={24} />} label="HTML5" />
+            <PlanetWrapper orbitDuration="30s" style={{ left: '9.5%', top: '79.4%' }} icon={<FaCss3Alt size={24} />} label="CSS3" />
+            <PlanetWrapper orbitDuration="30s" style={{ left: '9.5%', top: '20.6%' }} icon={<FaSass size={24} />} label="SASS" />
+            <PlanetWrapper orbitDuration="30s" style={{ left: '65.5%', top: '2.4%' }} icon={<FaBootstrap size={24} />} label="Bootstrap" />
+          </OrbitRing>
+
+          {/* Outer Orbit (6 items) */}
+          <OrbitRing className="outer">
+            <PlanetWrapper orbitDuration="40s" style={{ left: '100%', top: '50%' }} icon={<FaNodeJs size={24} />} label="Node.js" />
+            <PlanetWrapper orbitDuration="40s" style={{ left: '75%', top: '93.3%' }} icon={<SiMongodb size={24} />} label="MongoDB" />
+            <PlanetWrapper orbitDuration="40s" style={{ left: '25%', top: '93.3%' }} icon={<SiMysql size={24} />} label="MySQL" />
+            <PlanetWrapper orbitDuration="40s" style={{ left: '0%', top: '50%' }} icon={<FaGitAlt size={24} />} label="Git" />
+            <PlanetWrapper orbitDuration="40s" style={{ left: '25%', top: '6.7%' }} icon={<FaAws size={24} />} label="AWS" />
+            <PlanetWrapper orbitDuration="40s" style={{ left: '75%', top: '6.7%' }} icon={<SiFirebase size={24} />} label="Firebase" />
+          </OrbitRing>
+        </SolarSystemContainer>
       </ContentWrapper>
-
-
     </SkillsSection>
   );
 };

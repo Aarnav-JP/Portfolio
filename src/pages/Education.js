@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const EducationSection = styled.section`
+import { motion } from "framer-motion";
+
+const EducationSection = styled(motion.section)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +103,13 @@ const ScrollIndicator = styled.div`
 
 const Education = () => {
   return (
-    <EducationSection id="education">
+    <EducationSection
+      id="education"
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
       <Heading>Education</Heading>
       <Timeline>
         <TimelineItem>

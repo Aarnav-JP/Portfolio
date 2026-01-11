@@ -1,9 +1,11 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 import { FaGithub } from "react-icons/fa";
 
-const ProjectsSection = styled.section`
+import { motion } from "framer-motion";
+
+const ProjectsSection = styled(motion.section)`
   min-height: 100vh; 
   padding-top: 80px;
   display: flex;
@@ -22,11 +24,6 @@ const ProjectsSection = styled.section`
     }
 `;
 
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
-
 const ProjectTitleName = styled.h3`
   font-size: 2.5rem;
   margin-up: 50px;
@@ -41,19 +38,24 @@ const ProjectTitleName = styled.h3`
 `;
 
 
-const ProjectCard = styled.div`
-  background: rgba(255, 255, 255, 0.1);
+const ProjectCard = styled(motion.div)`
+  background: rgba(255, 255, 255, 0.05); /* Glassmorphism base */
+  backdrop-filter: blur(10px);           /* Blur effect */
+  -webkit-backdrop-filter: blur(10px);   /* Safari support */
   padding: 15px;
   border-radius: 10px;
   margin: 15px;
-    width: 90%;
-    max-width: 680px;
-  animation: ${fadeIn} 1s ease-out;
+  width: 90%;
+  max-width: 680px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease; /* Removed transform from here to let framer handle layout */
+
   &:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
+    transform: translateY(-5px); /* Lift up - purely visual CSS hover is fine usually, but mixing might be tricky. Let's keep CSS hover for simple lift */
+    border-color: rgba(255, 140, 0, 0.5); /* Neon Orange Border */
+    box-shadow: 0 0 15px rgba(255, 140, 0, 0.3); /* Neon Orange Glow */
   }
 `;
 
@@ -80,11 +82,22 @@ const ProjectDescription = styled.p`
 
 const Projects = () => {
   return (
-    <ProjectsSection id="projects">
+    <ProjectsSection
+      id="projects"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8 }}
+    >
       {/* <h2>My Projects</h2> */}
       <ProjectTitleName>Projects</ProjectTitleName>
 
-      <ProjectCard>
+      <ProjectCard
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
         <ProjectTitle>HireMatrix - Online Coding Assessment Platform</ProjectTitle>
         <ProjectSubtitle>
 
@@ -105,7 +118,12 @@ const Projects = () => {
         </ProjectDescription>
       </ProjectCard>
 
-      <ProjectCard>
+      <ProjectCard
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
         <ProjectTitle>Distributed LMS with LLM-based Tutoring and Raft-based Data Consistency</ProjectTitle>
         <ProjectSubtitle>Technology: Python | <a href="https://github.com/Aarnav-JP/Distributed_LMS" target="_blank" rel="noopener noreferrer" style={{ margin: '10px' }}>
           <FaGithub color="#ffffff" />
@@ -124,7 +142,12 @@ const Projects = () => {
         </ProjectDescription>
       </ProjectCard>
 
-      <ProjectCard>
+      <ProjectCard
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+      >
         <ProjectTitle>Pathfinder Visualizer</ProjectTitle>
         <ProjectSubtitle>Technology: React.js, CSS3 | <a href="https://github.com/Aarnav-JP/PathFinder" target="_blank" rel="noopener noreferrer" style={{ margin: '10px' }}>
           <FaGithub color="#ffffff" />

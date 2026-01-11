@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const AchievementsSection = styled.section`
+import { motion } from "framer-motion";
+
+const AchievementsSection = styled(motion.section)`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -91,46 +93,52 @@ const CodingProfileButton = styled.a`
 
 
 const Achievements = () => {
-    return (
-        <AchievementsSection id="achievements">
-            <AchievementTitle>Achievements</AchievementTitle>
-            <AchievementsContainer>
-                {/* Achievements list */}
-                <AchievementItem>• Achieved Global Rank - 274 in Codeforces (2022)</AchievementItem>
-                <AchievementItem>• Achieved Global Rank - 459 in Code Sensoby (CodeChef) by IIIT Allahabad (2021)</AchievementItem>
-                <AchievementItem>• Achieved Global Rank - 3441 in Google Kickstart - Round F (2022)</AchievementItem>
-                <AchievementItem>• Achieved Global Rank - 924 in Codechef Starters (2022)</AchievementItem>
-                <AchievementItem>• Selected for Amazon ML Summer School 2022</AchievementItem>
-                <AchievementItem>• Secured AIR 1406 in GATE CS 2024 (Top 1% of 1.5L+ candidates)</AchievementItem>
-                <AchievementItem>• Secured AIR 1291 in GATE DA 2024 (Top 1% of 1L+ candidates)</AchievementItem>
+  return (
+    <AchievementsSection
+      id="achievements"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
+      <AchievementTitle>Achievements</AchievementTitle>
+      <AchievementsContainer>
+        {/* Achievements list */}
+        <AchievementItem>• Achieved Global Rank - 274 in Codeforces (2022)</AchievementItem>
+        <AchievementItem>• Achieved Global Rank - 459 in Code Sensoby (CodeChef) by IIIT Allahabad (2021)</AchievementItem>
+        <AchievementItem>• Achieved Global Rank - 3441 in Google Kickstart - Round F (2022)</AchievementItem>
+        <AchievementItem>• Achieved Global Rank - 924 in Codechef Starters (2022)</AchievementItem>
+        <AchievementItem>• Selected for Amazon ML Summer School 2022</AchievementItem>
+        <AchievementItem>• Secured AIR 1406 in GATE CS 2024 (Top 1% of 1.5L+ candidates)</AchievementItem>
+        <AchievementItem>• Secured AIR 1291 in GATE DA 2024 (Top 1% of 1L+ candidates)</AchievementItem>
 
-                {/* Coding profiles */}
-                <AchievementTitle>Coding Profiles</AchievementTitle>
-                <CodingProfileLinks>
-                    <CodingProfileButton href="https://leetcode.com/aarnavjp/" target="_blank" rel="noopener noreferrer">
-                        LeetCode  (Min Global Rank - 52k and 630+ problems solved)
-                    </CodingProfileButton>
-                    <CodingProfileButton href="https://www.codechef.com/users/comrade_aj" target="_blank" rel="noopener noreferrer">
-                        CodeChef (Highest Rating - 1614)
-                    </CodingProfileButton>
-                    <CodingProfileButton href="https://www.hackerrank.com/aarnavjp" target="_blank" rel="noopener noreferrer">
-                        HackerRank (5 Stars)
-                    </CodingProfileButton>
-                    <CodingProfileButton href="https://codeforces.com/profile/deadpool28" target="_blank" rel="noopener noreferrer">
-                        Codeforces (Max rating - 1291, pupil)
-                    </CodingProfileButton>
-                    <CodingProfileButton href=": https://www.geeksforgeeks.org/user/alpha_saga/" target="_blank" rel="noopener noreferrer">
-                        GeeksforGeeks (330+ problems solved and 867 Score)
-                    </CodingProfileButton>
-                    <CodingProfileButton href=": https://www.naukri.com/code360/profile/deadpool28" target="_blank" rel="noopener noreferrer">
-                        Code Studio 360
-                    </CodingProfileButton>
-                </CodingProfileLinks>
-            </AchievementsContainer>
+        {/* Coding profiles */}
+        <AchievementTitle>Coding Profiles</AchievementTitle>
+        <CodingProfileLinks>
+          <CodingProfileButton href="https://leetcode.com/aarnavjp/" target="_blank" rel="noopener noreferrer">
+            LeetCode  (Min Global Rank - 52k and 630+ problems solved)
+          </CodingProfileButton>
+          <CodingProfileButton href="https://www.codechef.com/users/comrade_aj" target="_blank" rel="noopener noreferrer">
+            CodeChef (Highest Rating - 1614)
+          </CodingProfileButton>
+          <CodingProfileButton href="https://www.hackerrank.com/aarnavjp" target="_blank" rel="noopener noreferrer">
+            HackerRank (5 Stars)
+          </CodingProfileButton>
+          <CodingProfileButton href="https://codeforces.com/profile/deadpool28" target="_blank" rel="noopener noreferrer">
+            Codeforces (Max rating - 1291, pupil)
+          </CodingProfileButton>
+          <CodingProfileButton href=": https://www.geeksforgeeks.org/user/alpha_saga/" target="_blank" rel="noopener noreferrer">
+            GeeksforGeeks (330+ problems solved and 867 Score)
+          </CodingProfileButton>
+          <CodingProfileButton href=": https://www.naukri.com/code360/profile/deadpool28" target="_blank" rel="noopener noreferrer">
+            Code Studio 360
+          </CodingProfileButton>
+        </CodingProfileLinks>
+      </AchievementsContainer>
 
 
-        </AchievementsSection>
-    );
+    </AchievementsSection>
+  );
 };
 
 export default Achievements;

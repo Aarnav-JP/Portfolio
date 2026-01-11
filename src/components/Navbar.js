@@ -22,13 +22,18 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
-  background: linear-gradient(135deg, #2d2e32, #1b1c20);
-  border-bottom: 1px solid ${({ theme }) => theme.toggleBorder};
+  /* Glassmorphism Effect */
+  background: rgba(255, 255, 255, 0.05); /* Very transparent white for "frost" */
+  backdrop-filter: blur(20px);           /* Stronger blur */
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  
   @media (max-width: 768px) {
     padding: 10px 16px;
   }
@@ -97,10 +102,14 @@ const MobileMenu = styled.div`
   position: absolute;
   top: 60px;
   right: 16px;
-  background: rgba(27, 28, 32, 0.95);
-  border: 1px solid ${({ theme }) => theme.toggleBorder};
+  /* Glassmorphism for Menu */
+  background: rgba(45, 46, 50, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
   padding: 10px;
   z-index: 200;
   @media (max-width: 768px) {

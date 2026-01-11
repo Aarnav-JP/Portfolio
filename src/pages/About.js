@@ -3,8 +3,10 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 
+import { motion } from "framer-motion";
+
 // Reuse the background style from the Home page
-const AboutSection = styled.section`
+const AboutSection = styled(motion.section)`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -133,7 +135,13 @@ const CubeFace = styled.div`
 
 const About = () => {
   return (
-    <AboutSection id="about">
+    <AboutSection
+      id="about"
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
       <TextContainer>
         <Title>About Me</Title>
         <Paragraph>

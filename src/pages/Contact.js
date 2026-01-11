@@ -3,8 +3,10 @@ import styled, { keyframes } from 'styled-components';
 import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa'; // Importing necessary icons
 
 
+import { motion } from "framer-motion";
+
 // Styling for the section
-const ContactSection = styled.section`
+const ContactSection = styled(motion.section)`
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -150,7 +152,13 @@ const ContactDetails = styled.div`
 
 const Contact = () => {
   return (
-    <ContactSection id="contact">
+    <ContactSection
+      id="contact"
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
       {/* Galaxy background */}
 
       <TextContainer>
