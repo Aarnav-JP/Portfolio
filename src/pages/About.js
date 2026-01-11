@@ -1,5 +1,5 @@
 // src/pages/About.js
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -28,7 +28,7 @@ const ContentWrapper = styled.div`
   
   @media (max-width: 900px) {
     flex-direction: column;
-    gap: 50px;
+    gap: 100px; /* Increased gap to prevent overlap with parallax */
   }
 `;
 
@@ -188,12 +188,25 @@ const CubeFace = styled.div`
 
 const About = () => {
   const ref = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 900);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  // Disable parallax on mobile to prevent overlap
+  const y = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [50, -50]);
 
   return (
     <AboutSection
