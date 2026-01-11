@@ -1,172 +1,252 @@
 // src/pages/About.js
-import React from 'react';
+import React, { useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { motion, useScroll, useTransform } from "framer-motion";
 
-
-import { motion } from "framer-motion";
-
-// Reuse the background style from the Home page
 const AboutSection = styled(motion.section)`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  height: 100vh;
+  justify-content: center;
+  min-height: 100vh;
   color: #ffffff;
-  padding: 0 10%;
+  padding: 80px 5%;
   position: relative;
   overflow: hidden;
+  
   @media (max-width: 900px) {
-    height: auto;
-    padding: 80px 6% 40px;
+    padding: 80px 4% 40px;
+    min-height: auto;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  gap: 60px;
+  max-width: 1400px;
+  width: 100%;
+  align-items: center;
+  
+  @media (max-width: 900px) {
     flex-direction: column;
-    gap: 24px;
-    text-align: center;
+    gap: 50px;
   }
 `;
 
-// Fade-in animation for content
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+const TextPanel = styled.div`
+  flex: 1.2;
+  position: relative;
+  background: rgba(20, 20, 30, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 255, 234, 0.3);
+  border-radius: 24px;
+  padding: 45px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  
+  /* Decorative corner accent */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #00ffea22, transparent);
+    border-radius: 0 24px 0 100%;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-// Text container for the paragraph
-const TextContainer = styled.div`
-  flex: 1;
-  animation: ${fadeIn} 1s ease-out forwards;
-  max-width: 600px;
-  z-index: 1;
+  
   @media (max-width: 900px) {
-    max-width: 100%;
+    padding: 30px 20px;
   }
 `;
 
-// Title for the About section
 const Title = styled.h1`
-  font-size: 3rem;
-  margin: 0;
-  background: linear-gradient(to right, #ff8c00, #e01e37);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 3.5rem;
+  margin: 0 0 20px 0;
+  color: #ff8c00;
+  font-weight: 700;
+  letter-spacing: -1px;
+  
   @media (max-width: 900px) {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 `;
 
-// Paragraph text style
+const BadgeRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 30px;
+`;
+
+const StatBadge = styled.span`
+  background: rgba(20, 20, 30, 0.8);
+  border: 1px solid ${props => props.$color || '#ff8c00'}40;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: ${props => props.$color || '#ff8c00'};
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+`;
+
+const SectionHeader = styled.h3`
+  font-size: 1.1rem;
+  color: #00ffea;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 25px 0 15px 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+  &::after {
+    content: '';
+    height: 1px;
+    background: linear-gradient(90deg, #00ffea40, transparent);
+    flex: 1;
+  }
+`;
+
 const Paragraph = styled.p`
-  font-size: 1.2rem;
-  margin: 20px 0;
-  opacity: 0.9;
-  line-height: 1.6;
+  font-size: 1.05rem;
+  color: #e0e0e0;
+  line-height: 1.8;
+  margin: 0;
+  text-align: justify;
+  font-weight: 300;
 `;
 
-// Cube animation (Rotating Cube)
-const rotateCube = keyframes`
-  0% {
-    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
-  }
+const HighlightedText = styled.span`
+  color: ${props => props.$color || '#ff8c00'};
+  font-weight: 600;
 `;
 
-// Cube container
-const CubeContainer = styled.div`
-  flex: 1;
+const AnimationPanel = styled(motion.div)`
+  flex: 0.8;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  height: 400px;
+  perspective: 1000px;
+  
   @media (max-width: 900px) {
+    height: 300px;
     width: 100%;
-    margin-top: 16px; /* Add breathing room from text above */
-    margin-bottom: 16px; /* Avoid overlap with following content */
   }
 `;
 
-// Cube styles and animation
-const Cube = styled.div`
+// Neon Cube Animation
+const rotateCube = keyframes`
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg); }
+`;
+
+const CubeWrapper = styled.div`
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   transform-style: preserve-3d;
-  transform: rotateX(45deg) rotateY(45deg);
-  animation: ${rotateCube} 8s infinite linear;
+  animation: ${rotateCube} 15s infinite linear;
+  
   @media (max-width: 900px) {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
   }
 `;
 
 const CubeFace = styled.div`
   position: absolute;
-  width: 150px;
-  height: 150px;
-  background: ${({ color }) => color};
-  border: 2px solid #1b1c20;
-  opacity: 0.8;
-
-  &:nth-child(1) { transform: rotateY(0deg) translateZ(75px); }
-  &:nth-child(2) { transform: rotateY(90deg) translateZ(75px); }
-  &:nth-child(3) { transform: rotateY(180deg) translateZ(75px); }
-  &:nth-child(4) { transform: rotateY(-90deg) translateZ(75px); }
-  &:nth-child(5) { transform: rotateX(90deg) translateZ(75px); }
-  &:nth-child(6) { transform: rotateX(-90deg) translateZ(75px); }
+  width: 100%;
+  height: 100%;
+  border: 2px solid ${props => props.$color};
+  background: ${props => props.$color}10;
+  box-shadow: 0 0 20px ${props => props.$color}40, inset 0 0 20px ${props => props.$color}20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  backface-visibility: visible;
+  
+  /* Positioning faces */
+  &:nth-child(1) { transform: rotateY(0deg) translateZ(100px); }
+  &:nth-child(2) { transform: rotateY(90deg) translateZ(100px); }
+  &:nth-child(3) { transform: rotateY(180deg) translateZ(100px); }
+  &:nth-child(4) { transform: rotateY(-90deg) translateZ(100px); }
+  &:nth-child(5) { transform: rotateX(90deg) translateZ(100px); }
+  &:nth-child(6) { transform: rotateX(-90deg) translateZ(100px); }
+  
   @media (max-width: 900px) {
-    width: 120px;
-    height: 120px;
-    &:nth-child(1) { transform: rotateY(0deg) translateZ(60px); }
-    &:nth-child(2) { transform: rotateY(90deg) translateZ(60px); }
-    &:nth-child(3) { transform: rotateY(180deg) translateZ(60px); }
-    &:nth-child(4) { transform: rotateY(-90deg) translateZ(60px); }
-    &:nth-child(5) { transform: rotateX(90deg) translateZ(60px); }
-    &:nth-child(6) { transform: rotateX(-90deg) translateZ(60px); }
+    &:nth-child(1) { transform: rotateY(0deg) translateZ(75px); }
+    &:nth-child(2) { transform: rotateY(90deg) translateZ(75px); }
+    &:nth-child(3) { transform: rotateY(180deg) translateZ(75px); }
+    &:nth-child(4) { transform: rotateY(-90deg) translateZ(75px); }
+    &:nth-child(5) { transform: rotateX(90deg) translateZ(75px); }
+    &:nth-child(6) { transform: rotateX(-90deg) translateZ(75px); }
   }
 `;
 
-
-
 const About = () => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
   return (
     <AboutSection
       id="about"
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      ref={ref}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
     >
-      <TextContainer>
-        <Title>About Me</Title>
-        <Paragraph>
-          Hello! I’m Aarnav JP, a Computer Science Engineering student with a passion for tackling new
-          challenges and a drive to constantly learn, grow, and excel in software development. I'm currently
-          pursuing my Masters at the Birla Institute of Science and Technology - Pilani, set to graduate in 2026.
-        </Paragraph>
-        <Paragraph>
-          My journey in tech has cultivated a strong foundation in competitive programming, data structures, and algorithms,
-          with hands-on experience in C++, Python, Machine Learning, and the MERN stack. I’m excited to step into
-          the software engineering world and build impactful solutions that meet real-world needs.
-        </Paragraph>
-      </TextContainer>
+      <ContentWrapper>
+        <TextPanel>
+          <Title>About Me</Title>
+          <BadgeRow>
+            <StatBadge $color="#ff8c00">🎓 2026 Graduate</StatBadge>
+            <StatBadge $color="#ff8c00">💻 Full Stack Dev</StatBadge>
+            <StatBadge $color="#ff8c00">🤖 ML Enthusiast</StatBadge>
+          </BadgeRow>
 
-      <CubeContainer>
-        <Cube>
-          <CubeFace color="#ff8c00" />
-          <CubeFace color="#e01e37" />
-          <CubeFace color="#ffd700" />
-          <CubeFace color="#ff4500" />
-          <CubeFace color="#ff8c00" />
-          <CubeFace color="#e01e37" />
-        </Cube>
-      </CubeContainer>
-    </AboutSection >
+          <SectionHeader>WHO I AM</SectionHeader>
+          <Paragraph>
+            Hello! I'm <HighlightedText $color="#00ffea">Aarnav JP</HighlightedText>, a Computer Science Engineering student with a passion for
+            tackling new challenges and a drive to constantly learn, grow, and excel in software
+            development. I'm currently pursuing my <HighlightedText>Masters</HighlightedText> at the <HighlightedText>Birla Institute of Science and
+              Technology - Pilani</HighlightedText>, set to graduate in 2026.
+          </Paragraph>
+
+          <SectionHeader>MY JOURNEY</SectionHeader>
+          <Paragraph>
+            My journey in tech has cultivated a strong foundation in <HighlightedText $color="#a855f7">competitive programming</HighlightedText>,
+            <HighlightedText $color="#a855f7">data structures</HighlightedText>, and <HighlightedText $color="#a855f7">algorithms</HighlightedText>, with hands-on experience in <HighlightedText>C++</HighlightedText>, <HighlightedText>Python</HighlightedText>, <HighlightedText>Machine
+              Learning</HighlightedText>, and the <HighlightedText>MERN stack</HighlightedText>. I'm excited to step into the software engineering world
+            and build impactful solutions that meet real-world needs.
+          </Paragraph>
+        </TextPanel>
+
+        <AnimationPanel style={{ y }}>
+          <CubeWrapper>
+            <CubeFace $color="#ff8c00" />
+            <CubeFace $color="#00ffea" />
+            <CubeFace $color="#a855f7" />
+            <CubeFace $color="#ff0055" />
+            <CubeFace $color="#ff8c00" />
+            <CubeFace $color="#00ffea" />
+          </CubeWrapper>
+        </AnimationPanel>
+      </ContentWrapper>
+    </AboutSection>
   );
 };
 
