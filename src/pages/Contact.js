@@ -16,6 +16,7 @@ const ContactSection = styled(motion.section)`
   padding: 0 10%;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 100px; /* Prevent navbar overlap */
 
 
   @media (max-width: 900px) {

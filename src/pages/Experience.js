@@ -20,6 +20,7 @@ const ExperienceSection = styled(motion.section)`
   margin: 50px;
   padding: 20px;
   box-sizing: border-box;
+  scroll-margin-top: 100px; /* Prevent navbar overlap */
   box-sizing: border-box;
   ${'' /* z-index: 1; */}
     @media (max-width: 900px) {

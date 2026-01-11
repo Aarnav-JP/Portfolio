@@ -26,6 +26,7 @@ const SkillsSection = styled(motion.section)`
   /* overflow: hidden; */ 
   height: 100%;
   padding: 0 5%;
+  scroll-margin-top: 100px; /* Prevent navbar overlap */
   
   @media (max-width: 900px) {
     min-height: 100vh;

@@ -12,6 +12,7 @@ const AboutSection = styled(motion.section)`
   padding: 80px 5%;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 100px; /* Prevent navbar overlap */
   
   @media (max-width: 900px) {
     padding: 80px 4% 120px; /* Increased bottom padding to prevent overlap */

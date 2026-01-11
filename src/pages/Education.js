@@ -24,6 +24,7 @@ const EducationSection = styled(motion.section)`
   padding: 80px 5%;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 100px; /* Prevent navbar overlap */
 
   @media (max-width: 900px) {
     padding: 60px 4% 40px;

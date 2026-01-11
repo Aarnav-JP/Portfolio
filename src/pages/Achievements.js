@@ -16,6 +16,7 @@ const AchievementsSection = styled(motion.section)`
   padding-top: 50px;
   padding-bottom: 50px;
   height: 100%;
+  scroll-margin-top: 100px; /* Prevent navbar overlap */
 
     @media (max-width: 900px) {
         padding-left: 6%;

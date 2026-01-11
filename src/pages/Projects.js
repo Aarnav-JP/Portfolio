@@ -18,6 +18,7 @@ const ProjectsSection = styled(motion.section)`
   padding-left: 5%;
   padding-right: 5%;
   height: auto;
+  scroll-margin-top: 100px; /* Prevent navbar overlap */
 
     @media (max-width: 900px) {
         padding-top: 70px;
