@@ -3,10 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { motion } from "framer-motion";
 import { FaUniversity, FaSchool, FaGraduationCap } from "react-icons/fa";
 
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
+
 
 const pulseGlow = keyframes`
   0% { box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); }

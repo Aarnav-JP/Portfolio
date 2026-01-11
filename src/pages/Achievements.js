@@ -128,10 +128,10 @@ const Achievements = () => {
           <CodingProfileButton href="https://codeforces.com/profile/deadpool28" target="_blank" rel="noopener noreferrer">
             Codeforces (Max rating - 1291, pupil)
           </CodingProfileButton>
-          <CodingProfileButton href=": https://www.geeksforgeeks.org/user/alpha_saga/" target="_blank" rel="noopener noreferrer">
+          <CodingProfileButton href="https://www.geeksforgeeks.org/user/alpha_saga/" target="_blank" rel="noopener noreferrer">
             GeeksforGeeks (330+ problems solved and 867 Score)
           </CodingProfileButton>
-          <CodingProfileButton href=": https://www.naukri.com/code360/profile/deadpool28" target="_blank" rel="noopener noreferrer">
+          <CodingProfileButton href="https://www.naukri.com/code360/profile/deadpool28" target="_blank" rel="noopener noreferrer">
             Code Studio 360
           </CodingProfileButton>
         </CodingProfileLinks>
