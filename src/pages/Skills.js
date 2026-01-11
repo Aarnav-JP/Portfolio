@@ -25,11 +25,12 @@ const SkillsSection = styled(motion.section)`
   position: relative;
   /* overflow: hidden; */ 
   height: 100%;
-  padding: 0 5%;
+  padding: 100px 5% 50px; /* Added internal padding */
   scroll-margin-top: 100px; /* Prevent navbar overlap */
   
   @media (max-width: 900px) {
     min-height: 100vh;
+    padding: 80px 5%;
   }
 `;
 
@@ -43,7 +44,8 @@ const GradientText = styled.h1`
   animation: ${fadeIn} 1s ease-out forwards;
   position: relative;
   z-index: 1;
-  margin-top: -40px; 
+  margin-top: 0;  /* Removed negative margin */
+  
   @media (max-width: 900px) {
     font-size: 2.2rem;
     margin-top: 0;

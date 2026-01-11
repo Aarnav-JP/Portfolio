@@ -53,6 +53,10 @@ const TimelineContainer = styled.div`
   margin: 0 auto;
   padding-left: 30px;
   z-index: 1;
+  
+  @media (max-width: 600px) {
+    padding-left: 20px;
+  }
 `;
 
 /* The Constellation Line */
