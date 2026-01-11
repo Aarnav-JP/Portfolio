@@ -73,27 +73,6 @@ const Title = styled.h1`
   }
 `;
 
-const BadgeRow = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 30px;
-`;
-
-const StatBadge = styled.span`
-  background: rgba(20, 20, 30, 0.8);
-  border: 1px solid ${props => props.$color || '#ff8c00'}40;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  color: ${props => props.$color || '#ff8c00'};
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-`;
-
 const SectionHeader = styled.h3`
   font-size: 1.1rem;
   color: #00ffea;
@@ -154,6 +133,11 @@ const CubeWrapper = styled.div`
   transform-style: preserve-3d;
   animation: ${rotateCube} 15s infinite linear;
   
+  /* Pause animation on hover for better interaction */
+  &:hover {
+    animation-play-state: paused;
+  }
+  
   @media (max-width: 900px) {
     width: 150px;
     height: 150px;
@@ -172,6 +156,15 @@ const CubeFace = styled.div`
   justify-content: center;
   font-size: 2rem;
   backface-visibility: visible;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  /* Hover Effect: Slight Glow */
+  &:hover {
+    background: ${props => props.$color}30;
+    box-shadow: 0 0 40px ${props => props.$color}80, inset 0 0 30px ${props => props.$color}40;
+    border-color: ${props => props.$color};
+  }
   
   /* Positioning faces */
   &:nth-child(1) { transform: rotateY(0deg) translateZ(100px); }
@@ -212,11 +205,7 @@ const About = () => {
       <ContentWrapper>
         <TextPanel>
           <Title>About Me</Title>
-          <BadgeRow>
-            <StatBadge $color="#ff8c00">🎓 2026 Graduate</StatBadge>
-            <StatBadge $color="#ff8c00">💻 Full Stack Dev</StatBadge>
-            <StatBadge $color="#ff8c00">🤖 ML Enthusiast</StatBadge>
-          </BadgeRow>
+          {/* Badges removed as per request */}
 
           <SectionHeader>WHO I AM</SectionHeader>
           <Paragraph>
