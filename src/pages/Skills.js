@@ -64,58 +64,123 @@ const ContentWrapper = styled.div`
 
 const CardsWrapper = styled.div`
   display: flex;
-  gap: 20px;
-  margin-bottom: 30px;
+  gap: 30px;
+  margin-bottom: 50px;
   @media (max-width: 900px) {
     flex-direction: column;
     width: 100%;
+    gap: 25px;
   }
 `;
 
 const SkillCard = styled.div`
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #333;
-  padding: 20px;
-  border-radius: 15px;
-  width: 280px;
-  text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  background: rgba(20, 20, 30, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 35px 25px;
+  border-radius: 20px;
+  width: 320px;
+  border: 2px solid ${props => props.$accentColor || 'rgba(255, 255, 255, 0.1)'};
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+
+  /* Decorative corner accent */
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, ${props => props.$accentColor || '#ff8c00'}33, transparent);
+    border-radius: 0 20px 0 100%;
+  }
+
+  /* Bottom glow line */
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, ${props => props.$accentColor || '#ff8c00'}, transparent);
+    opacity: 0.5;
+  }
 
   &:hover {
-    transform: translateY(-10px);
-    border-color: rgba(255, 140, 0, 0.5);
-    box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
+    transform: translateY(-12px) scale(1.02);
+    border-color: ${props => props.$accentColor || '#ff8c00'};
+    box-shadow: 0 15px 45px ${props => props.$accentColor || '#ff8c00'}40,
+                0 0 30px ${props => props.$accentColor || '#ff8c00'}20;
+    
+    &::after {
+      opacity: 1;
+    }
   }
+
   @media (max-width: 900px) {
     width: 100%;
+    padding: 30px 20px;
   }
+`;
+
+const CardHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+`;
+
+const CardTextGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+const CardIconBadge = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 55px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: ${props => `linear-gradient(135deg, ${props.$color}20, ${props.$color}10)`};
+  border: 1px solid ${props => `${props.$color}40`};
+  font-size: 1.8rem;
+  box-shadow: 0 0 20px ${props => `${props.$color}30`};
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1.2rem;
-  color: rgb(0, 255, 234);
-  margin-bottom: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: ${props => props.$color || 'rgb(0, 255, 234)'};
+  margin: 0;
+  text-shadow: 0 0 15px ${props => `${props.$color}60`};
+  letter-spacing: -0.5px;
+`;
+
+const CardSubtitle = styled.div`
+  font-size: 0.85rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0;
+  font-weight: 600;
 `;
 
 const CardDescription = styled.p`
-  font-size: 1rem;
-  color: #ddd;
-  line-height: 1.5;
-  text-align: left;
-  font-weight: 500;
-  background: linear-gradient(to right, #ffffff, #dcdcdc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 0.95rem;
+  color: #ccc;
+  line-height: 1.7;
+  text-align: justify;
+  font-weight: 400;
   margin-top: 10px;
-  letter-spacing: 0.4px;
-  &:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
-  }
+  position: relative;
+  z-index: 1;
 `;
 
 const PlanetLabel = styled.span`
@@ -272,22 +337,40 @@ const Skills = () => {
 
       <ContentWrapper>
         <CardsWrapper>
-          <SkillCard>
-            <CardTitle>Machine Learning</CardTitle>
+          <SkillCard $accentColor="#00ffea">
+            <CardHeader>
+              <CardIconBadge $color="#00ffea">🤖</CardIconBadge>
+              <CardTextGroup>
+                <CardTitle $color="#00ffea">Machine Learning</CardTitle>
+                <CardSubtitle>AI & Data Science</CardSubtitle>
+              </CardTextGroup>
+            </CardHeader>
             <CardDescription>
               Machine Learning has sharpened my ability to create data-driven models that solve complex problems. By working with algorithms and neural networks, I focus on extracting insights and making smarter predictions for real-world applications.
             </CardDescription>
           </SkillCard>
-          <SkillCard>
-            <CardTitle>Web Development</CardTitle>
+          <SkillCard $accentColor="#ff8c00">
+            <CardHeader>
+              <CardIconBadge $color="#ff8c00">💻</CardIconBadge>
+              <CardTextGroup>
+                <CardTitle $color="#ff8c00">Web Development</CardTitle>
+                <CardSubtitle>Full Stack MERN</CardSubtitle>
+              </CardTextGroup>
+            </CardHeader>
             <CardDescription>
               As a Full Stack Web Developer specializing in the MERN stack, I create dynamic, responsive, and visually engaging web applications. My passion lies in crafting seamless user experiences and developing efficient backend systems.
             </CardDescription>
           </SkillCard>
-          <SkillCard>
-            <CardTitle>Problem Solving</CardTitle>
+          <SkillCard $accentColor="#a855f7">
+            <CardHeader>
+              <CardIconBadge $color="#a855f7">🧩</CardIconBadge>
+              <CardTextGroup>
+                <CardTitle $color="#a855f7">Problem Solving</CardTitle>
+                <CardSubtitle>Competitive Programming</CardSubtitle>
+              </CardTextGroup>
+            </CardHeader>
             <CardDescription>
-              Competitive programming has shaped my critical thinking and strategic approach to solving problems. Through platforms like Codeforces, CodeChef, and CSES, I’ve mastered algorithms and data structures, while embracing challenges that test and push my limits, transforming obstacles into opportunities.
+              Competitive programming has shaped my critical thinking and strategic approach to solving problems. Through platforms like Codeforces, CodeChef, and CSES, I've mastered algorithms and data structures, while embracing challenges that test and push my limits, transforming obstacles into opportunities.
             </CardDescription>
           </SkillCard>
         </CardsWrapper>
