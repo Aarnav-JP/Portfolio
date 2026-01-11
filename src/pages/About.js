@@ -14,7 +14,7 @@ const AboutSection = styled(motion.section)`
   overflow: hidden;
   
   @media (max-width: 900px) {
-    padding: 80px 4% 40px;
+    padding: 80px 4% 120px; /* Increased bottom padding to prevent overlap */
     min-height: auto;
   }
 `;
@@ -114,7 +114,8 @@ const AnimationPanel = styled(motion.div)`
   justify-content: center;
   align-items: center;
   height: 400px;
-  perspective: 1000px;
+  perspective: 1200px; /* Increased perspective */
+  transform-style: preserve-3d; /* Ensure 3D context is preserved */
   
   @media (max-width: 900px) {
     height: 300px;
