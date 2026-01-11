@@ -40,7 +40,7 @@ const TextPanel = styled.div`
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 255, 234, 0.3);
   border-radius: 24px;
-  padding: 45px;
+  padding: 35px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   
@@ -57,14 +57,16 @@ const TextPanel = styled.div`
   }
   
   @media (max-width: 900px) {
-    padding: 30px 20px;
+    padding: 25px 20px;
   }
 `;
 
 const Title = styled.h1`
   font-size: 3.5rem;
   margin: 0 0 20px 0;
-  color: #ff8c00;
+  background: linear-gradient(90deg, #ff8c00, #ff0055);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 700;
   letter-spacing: -1px;
   
