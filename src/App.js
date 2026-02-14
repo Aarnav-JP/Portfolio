@@ -13,6 +13,7 @@ import Experience from './pages/Experience';
 import Achievements from './pages/Achievements';
 import Contact from './pages/Contact';
 import Education from './pages/Education';
+import CursorEffect from './components/CursorEffect';
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -21,6 +22,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <CursorEffect />
       <GalaxyBackground />
       <GlobalStyle />
       <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />

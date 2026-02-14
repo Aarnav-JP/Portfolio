@@ -12,10 +12,10 @@ const AboutSection = styled(motion.section)`
   padding: 80px 5%;
   position: relative;
   overflow: hidden;
-  scroll-margin-top: 100px; /* Prevent navbar overlap */
-  
+  scroll-margin-top: 100px;
+
   @media (max-width: 900px) {
-    padding: 80px 4% 120px; /* Increased bottom padding to prevent overlap */
+    padding: 80px 4% 120px;
     min-height: auto;
   }
 `;
@@ -23,90 +23,91 @@ const AboutSection = styled(motion.section)`
 const ContentWrapper = styled.div`
   display: flex;
   gap: 60px;
-  max-width: 1400px;
+  max-width: 1300px;
   width: 100%;
   align-items: center;
-  
+
   @media (max-width: 900px) {
     flex-direction: column;
-    gap: 100px; /* Increased gap to prevent overlap with parallax */
+    gap: 80px;
   }
 `;
 
 const TextPanel = styled.div`
   flex: 1.2;
   position: relative;
-  background: rgba(20, 20, 30, 0.6);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(0, 255, 234, 0.3);
-  border-radius: 24px;
-  padding: 35px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  
-  /* Decorative corner accent */
-  &::before {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 36px;
+  transition: border-color 0.35s ease;
+
+  &:hover {
+    border-color: rgba(255, 140, 0, 0.2);
+  }
+
+  /* Subtle top highlight */
+  &::after {
     content: '';
     position: absolute;
     top: 0;
-    right: 0;
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, #00ffea22, transparent);
-    border-radius: 0 24px 0 100%;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
   }
-  
+
   @media (max-width: 900px) {
-    padding: 25px 20px;
+    padding: 28px 22px;
   }
 `;
 
 const Title = styled.h1`
-  font-size: 3.5rem;
-  margin: 0 0 20px 0;
-  background: linear-gradient(90deg, #ff8c00, #ff0055);
+  font-size: 2.6rem;
+  margin: 0 0 24px 0;
+  background: linear-gradient(to right, #ff8c00, #e01e37);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
-  letter-spacing: -1px;
-  
+  letter-spacing: -0.5px;
+
   @media (max-width: 900px) {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 `;
 
-const SectionHeader = styled.h3`
-  font-size: 1.1rem;
-  color: #00ffea;
+const SectionLabel = styled.h3`
+  font-size: 0.8rem;
+  color: rgba(255, 140, 0, 0.7);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 25px 0 15px 0;
-  font-weight: 700;
+  letter-spacing: 2.5px;
+  margin: 28px 0 12px 0;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 10px;
-  
+  gap: 12px;
+
   &::after {
     content: '';
     height: 1px;
-    background: linear-gradient(90deg, #00ffea40, transparent);
+    background: linear-gradient(90deg, rgba(255, 140, 0, 0.25), transparent);
     flex: 1;
   }
 `;
 
 const Paragraph = styled.p`
-  font-size: 1.05rem;
-  color: #e0e0e0;
+  font-size: 0.98rem;
+  color: rgba(255, 255, 255, 0.6);
   line-height: 1.8;
   margin: 0;
-  text-align: justify;
-  font-weight: 300;
+  font-weight: 400;
 `;
 
-const HighlightedText = styled.span`
+const Highlight = styled.span`
   color: ${props => props.$color || '#ff8c00'};
-  font-weight: 600;
+  font-weight: 500;
 `;
 
 const AnimationPanel = styled(motion.div)`
@@ -115,16 +116,15 @@ const AnimationPanel = styled(motion.div)`
   justify-content: center;
   align-items: center;
   height: 400px;
-  perspective: 1200px; /* Increased perspective */
-  transform-style: preserve-3d; /* Ensure 3D context is preserved */
-  
+  perspective: 1200px;
+  transform-style: preserve-3d;
+
   @media (max-width: 900px) {
     height: 300px;
     width: 100%;
   }
 `;
 
-// Neon Cube Animation
 const rotateCube = keyframes`
   0% { transform: rotateX(0deg) rotateY(0deg); }
   100% { transform: rotateX(360deg) rotateY(360deg); }
@@ -132,19 +132,18 @@ const rotateCube = keyframes`
 
 const CubeWrapper = styled.div`
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   transform-style: preserve-3d;
-  animation: ${rotateCube} 15s infinite linear;
-  
-  /* Pause animation on hover for better interaction */
+  animation: ${rotateCube} 20s infinite linear;
+
   &:hover {
     animation-play-state: paused;
   }
-  
+
   @media (max-width: 900px) {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
   }
 `;
 
@@ -153,38 +152,35 @@ const CubeFace = styled.div`
   width: 100%;
   height: 100%;
   border: 2px solid ${props => props.$color};
-  background: ${props => props.$color}10;
-  box-shadow: 0 0 20px ${props => props.$color}40, inset 0 0 20px ${props => props.$color}20;
+  background: ${props => `${props.$color}10`};
+  box-shadow: 0 0 20px ${props => `${props.$color}40`}, inset 0 0 20px ${props => `${props.$color}20`};
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
   backface-visibility: visible;
   cursor: pointer;
   transition: all 0.3s ease;
-  
-  /* Hover Effect: Slight Glow */
+
   &:hover {
-    background: ${props => props.$color}30;
-    box-shadow: 0 0 40px ${props => props.$color}80, inset 0 0 30px ${props => props.$color}40;
+    background: ${props => `${props.$color}30`};
+    box-shadow: 0 0 40px ${props => `${props.$color}80`}, inset 0 0 30px ${props => `${props.$color}40`};
     border-color: ${props => props.$color};
   }
-  
-  /* Positioning faces */
-  &:nth-child(1) { transform: rotateY(0deg) translateZ(100px); }
-  &:nth-child(2) { transform: rotateY(90deg) translateZ(100px); }
-  &:nth-child(3) { transform: rotateY(180deg) translateZ(100px); }
-  &:nth-child(4) { transform: rotateY(-90deg) translateZ(100px); }
-  &:nth-child(5) { transform: rotateX(90deg) translateZ(100px); }
-  &:nth-child(6) { transform: rotateX(-90deg) translateZ(100px); }
-  
+
+  &:nth-child(1) { transform: rotateY(0deg) translateZ(90px); }
+  &:nth-child(2) { transform: rotateY(90deg) translateZ(90px); }
+  &:nth-child(3) { transform: rotateY(180deg) translateZ(90px); }
+  &:nth-child(4) { transform: rotateY(-90deg) translateZ(90px); }
+  &:nth-child(5) { transform: rotateX(90deg) translateZ(90px); }
+  &:nth-child(6) { transform: rotateX(-90deg) translateZ(90px); }
+
   @media (max-width: 900px) {
-    &:nth-child(1) { transform: rotateY(0deg) translateZ(75px); }
-    &:nth-child(2) { transform: rotateY(90deg) translateZ(75px); }
-    &:nth-child(3) { transform: rotateY(180deg) translateZ(75px); }
-    &:nth-child(4) { transform: rotateY(-90deg) translateZ(75px); }
-    &:nth-child(5) { transform: rotateX(90deg) translateZ(75px); }
-    &:nth-child(6) { transform: rotateX(-90deg) translateZ(75px); }
+    &:nth-child(1) { transform: rotateY(0deg) translateZ(70px); }
+    &:nth-child(2) { transform: rotateY(90deg) translateZ(70px); }
+    &:nth-child(3) { transform: rotateY(180deg) translateZ(70px); }
+    &:nth-child(4) { transform: rotateY(-90deg) translateZ(70px); }
+    &:nth-child(5) { transform: rotateX(90deg) translateZ(70px); }
+    &:nth-child(6) { transform: rotateX(-90deg) translateZ(70px); }
   }
 `;
 
@@ -196,7 +192,6 @@ const About = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 900);
     };
-
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -207,7 +202,6 @@ const About = () => {
     offset: ["start end", "end start"]
   });
 
-  // Disable parallax on mobile to prevent overlap
   const y = useTransform(scrollYProgress, [0, 1], isMobile ? [0, 0] : [50, -50]);
 
   return (
@@ -222,21 +216,20 @@ const About = () => {
       <ContentWrapper>
         <TextPanel>
           <Title>About Me</Title>
-          {/* Badges removed as per request */}
 
-          <SectionHeader>WHO I AM</SectionHeader>
+          <SectionLabel>WHO I AM</SectionLabel>
           <Paragraph>
-            Hello! I'm <HighlightedText $color="#00ffea">Aarnav JP</HighlightedText>, a Computer Science Engineering student with a passion for
+            Hello! I'm <Highlight $color="rgba(0, 255, 234, 0.9)">Aarnav JP</Highlight>, a Computer Science Engineering student with a passion for
             tackling new challenges and a drive to constantly learn, grow, and excel in software
-            development. I'm currently pursuing my <HighlightedText>Masters</HighlightedText> at the <HighlightedText>Birla Institute of Science and
-              Technology - Pilani</HighlightedText>, set to graduate in 2026.
+            development. I'm currently pursuing my <Highlight>Masters</Highlight> at the <Highlight>Birla Institute of Science and
+              Technology - Pilani</Highlight>, set to graduate in 2026.
           </Paragraph>
 
-          <SectionHeader>MY JOURNEY</SectionHeader>
+          <SectionLabel>MY JOURNEY</SectionLabel>
           <Paragraph>
-            My journey in tech has cultivated a strong foundation in <HighlightedText $color="#a855f7">competitive programming</HighlightedText>,
-            <HighlightedText $color="#a855f7">data structures</HighlightedText>, and <HighlightedText $color="#a855f7">algorithms</HighlightedText>, with hands-on experience in <HighlightedText>C++</HighlightedText>, <HighlightedText>Python</HighlightedText>, <HighlightedText>Machine
-              Learning</HighlightedText>, and the <HighlightedText>MERN stack</HighlightedText>. I'm excited to step into the software engineering world
+            My journey in tech has cultivated a strong foundation in <Highlight $color="rgba(168, 85, 247, 0.9)">competitive programming</Highlight>,
+            <Highlight $color="rgba(168, 85, 247, 0.9)"> data structures</Highlight>, and <Highlight $color="rgba(168, 85, 247, 0.9)">algorithms</Highlight>, with hands-on experience in <Highlight>C++</Highlight>, <Highlight>Python</Highlight>, <Highlight>Machine
+              Learning</Highlight>, and the <Highlight>MERN stack</Highlight>. I'm excited to step into the software engineering world
             and build impactful solutions that meet real-world needs.
           </Paragraph>
         </TextPanel>

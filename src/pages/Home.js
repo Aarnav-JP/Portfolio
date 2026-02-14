@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { Link } from 'react-scroll';
 import profileImage from '../assets/home_profile.jpg';
 import Typed from 'typed.js';
 
@@ -13,6 +14,19 @@ const fadeIn = keyframes`
     transform: translateY(0);
   }
 `;
+
+const pulseRing = keyframes`
+  0% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.4), 0 0 30px rgba(255, 140, 0, 0.15); }
+  50% { box-shadow: 0 0 0 12px rgba(255, 140, 0, 0), 0 0 40px rgba(224, 30, 55, 0.2); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 140, 0, 0.4), 0 0 30px rgba(255, 140, 0, 0.15); }
+`;
+
+const bounceDown = keyframes`
+  0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+  40% { transform: translateX(-50%) translateY(8px); }
+  60% { transform: translateX(-50%) translateY(4px); }
+`;
+
 const HeroSection = styled.section`
   display: flex;
   align-items: center;
@@ -25,9 +39,9 @@ const HeroSection = styled.section`
   flex-wrap: wrap;
 
   @media (max-width: 1100px) {
-    flex-direction: column; /* Stack elements vertically */
-    justify-content: space-evenly; /* Align content to the top */
-    padding: 5%; /* Adjust padding for better spacing */
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 5%;
   }
 `;
 
@@ -38,18 +52,19 @@ const TextContainer = styled.div`
   white-space: nowrap; 
   margin-right: 40px;  
   max-width: 60%; 
+
   @media (max-width: 1288px) {
-    font-size: 0.9rem; /* Slightly reduce text size for smaller screens */
-    max-width: 55%; /* Adjust container width */
+    font-size: 0.9rem;
+    max-width: 55%;
   }
   @media (max-width: 1100px) {
     margin-top: 50px;
-    margin-right: 0; /* Remove margin for stacked layout */
-    max-width: 100%; /* Allow full width for text */
-    text-align: center; /* Center-align text for smaller screens */
-    margin-bottom: 20px; /* Add spacing below text */
-    white-space: normal; /* Allow wrapping on smaller screens to prevent overflow */
-    overflow-wrap: anywhere; /* Break long strings if needed */
+    margin-right: 0;
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 `;
 
@@ -64,12 +79,12 @@ const ImageContainer = styled.div`
   max-width: 40%; 
 
   @media (max-width: 1288px) {
-    max-width: 32%; /* Reduce image container size by 20% */
+    max-width: 32%;
   }
 
   @media (max-width: 1100px) {
-    max-width: 60%; /* Reduce image container size for smaller screens */
-    margin-bottom: 20px; /* Reduce space below the image */
+    max-width: 60%;
+    margin-bottom: 20px;
   }
 `;
 
@@ -77,102 +92,112 @@ const ProfileImage = styled.img`
   width: 80%; 
   height: auto;
   border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 3px solid rgba(255, 140, 0, 0.4);
+  animation: ${pulseRing} 3s ease-in-out infinite;
+  transition: transform 0.4s ease;
+
+  &:hover {
+    transform: scale(1.03);
+  }
 
   @media (max-width: 1288px) {
-    width: 64%; /* Reduce the image size by 20% */
+    width: 64%;
   }
 
   @media (max-width: 768px) {
-    width: 70%; /* Reduce image size */
+    width: 70%;
   }
 `;
 
 const Title = styled.h1`
   font-size: 3.5rem;
   margin: 0;
-  background: linear-gradient(to right, #ff8c00, #e01e37);
+  background: linear-gradient(135deg, #ff8c00, #e01e37);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: -1px;
 
   @media (max-width: 1288px) {
-    font-size: 3rem; /* Slightly reduce font size for medium screens */
+    font-size: 3rem;
   }
   @media (max-width: 768px) {
-    font-size: 2.5rem; /* Reduce font size on smaller screens */
+    font-size: 2.5rem;
   }
 `;
 
 const Tagline = styled.p`
   font-size: 1.3rem;
   margin: 20px 0;
-  opacity: 0.8;
+  opacity: 0.7;
+  font-weight: 400;
+  letter-spacing: 0.3px;
 
   @media (max-width: 1288px) {
-    font-size: 1.1rem; /* Slightly reduce font size for medium screens */
+    font-size: 1.1rem;
   }
   @media (max-width: 768px) {
-    font-size: 1rem; /* Reduce font size on smaller screens */
+    font-size: 1rem;
   }
 `;
+
 
 const ScrollIndicator = styled.div`
   position: absolute;
-  bottom: 20px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  animation: ${fadeIn} 2s ease-out forwards infinite alternate;
+  animation: ${bounceDown} 2s ease infinite;
   z-index: 1;
+  opacity: 0.5;
+  font-size: 1.4rem;
+  color: rgba(255, 140, 0, 0.7);
+  cursor: pointer;
 
   @media (max-width: 768px) {
-    bottom: 10px; /* Adjust position for smaller screens */
+    bottom: 12px;
   }
 `;
 
-
-
-
-
-
 const Home = () => {
-  const titleRef = useRef(null);  // Reference for the title
-  const taglineRef = useRef(null); // Reference for the tagline
+  const titleRef = useRef(null);
+  const taglineRef = useRef(null);
 
   useEffect(() => {
-
-    // Initialize the typing animation for the name/title
     const typedTitle = new Typed(titleRef.current, {
-      strings: ["Hey, I’m Aarnav JP"],
+      strings: ["Hey, I'm Aarnav JP"],
       typeSpeed: 50,
       backSpeed: 30,
       loop: false,
-      showCursor: false,  // Disable cursor
+      showCursor: false,
     });
 
-    // Initialize the typing animation for the tagline
     const typedTagline = new Typed(taglineRef.current, {
       strings: ["Software Engineer | Competitive Programmer | Web Developer"],
       typeSpeed: 40,
       backSpeed: 20,
       loop: false,
-      showCursor: false,  // Disable cursor
+      showCursor: false,
     });
 
     return () => {
-      // Destroy instances on cleanup to prevent memory leaks
       typedTitle.destroy();
       typedTagline.destroy();
     };
-  }, []); return (
+  }, []);
+
+  return (
     <HeroSection id="home">
       <TextContainer>
-        <Title ref={titleRef}></Title>  {/* Title (name) */}
-        <Tagline ref={taglineRef}></Tagline>  {/* Tagline */}
+        <Title ref={titleRef}></Title>
+        <Tagline ref={taglineRef}></Tagline>
       </TextContainer>
       <ImageContainer>
         <ProfileImage src={profileImage} alt="Aarnav JP" />
       </ImageContainer>
-      <ScrollIndicator>↓</ScrollIndicator>
+      <ScrollIndicator>
+        <Link to="about" smooth={true} duration={500} offset={-60}>▾</Link>
+      </ScrollIndicator>
     </HeroSection>
   );
 };

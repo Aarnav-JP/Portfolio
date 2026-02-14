@@ -1,15 +1,7 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { motion } from "framer-motion";
 import { FaUniversity, FaSchool, FaGraduationCap } from "react-icons/fa";
-
-
-
-const pulseGlow = keyframes`
-  0% { box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); }
-  50% { box-shadow: 0 0 25px rgba(255, 140, 0, 1), 0 0 40px rgba(224, 30, 55, 0.6); }
-  100% { box-shadow: 0 0 10px rgba(255, 140, 0, 0.5); }
-`;
 
 const EducationSection = styled(motion.section)`
   display: flex;
@@ -21,7 +13,7 @@ const EducationSection = styled(motion.section)`
   padding: 80px 5%;
   position: relative;
   overflow: hidden;
-  scroll-margin-top: 100px; /* Prevent navbar overlap */
+  scroll-margin-top: 100px;
 
   @media (max-width: 900px) {
     padding: 60px 4% 40px;
@@ -29,16 +21,18 @@ const EducationSection = styled(motion.section)`
 `;
 
 const Heading = styled.h1`
-  font-size: 3rem;
+  font-size: 2.6rem;
   margin-bottom: 60px;
   background: linear-gradient(to right, #ff8c00, #e01e37);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   z-index: 1;
   text-align: center;
-  
+  font-weight: 700;
+  letter-spacing: -0.5px;
+
   @media (max-width: 600px) {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 40px;
   }
 `;
@@ -46,189 +40,214 @@ const Heading = styled.h1`
 const TimelineContainer = styled.div`
   position: relative;
   width: 100%;
-  max-width: 800px;
+  max-width: 780px;
   margin: 0 auto;
-  padding-left: 30px;
+  padding-left: 40px;
   z-index: 1;
-  
+
   @media (max-width: 600px) {
-    padding-left: 20px;
+    padding-left: 28px;
   }
 `;
 
-/* The Constellation Line */
 const TimelineLine = styled.div`
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 29px; /* Aligns with the center of the 60px nodes (offset by padding) */
-  width: 2px;
-  background: linear-gradient(to bottom, #ff8c00, #e01e37, rgba(0,0,0,0));
-  background-size: 2px 20px;
-  border-left: 2px dashed rgba(255, 140, 0, 0.3);
+  top: 8px;
+  bottom: 8px;
+  left: 47px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 140, 0, 0.5),
+    rgba(255, 140, 0, 0.15),
+    transparent
+  );
   z-index: 0;
-  
+
   @media (max-width: 600px) {
-    left: 19px; /* Adjusted for smaller icon nodes */
+    left: 35px;
   }
 `;
 
 const TimelineItem = styled(motion.div)`
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 48px;
   display: flex;
   align-items: flex-start;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
 `;
 
-/* Glowing "Planet" Node */
-const IconWrapper = styled.div`
+const NodeDot = styled.div`
   position: absolute;
-  left: -30px; /* (60px width / 2) */
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle at 30% 30%, #ff8c00, #000);
-  border: 2px solid #ff8c00;
+  left: -2px;
+  top: 30px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: #0a0a12;
+  border: 2px solid rgba(255, 140, 0, 0.6);
   z-index: 2;
-  color: white;
-  font-size: 1.5rem;
-  animation: ${pulseGlow} 3s infinite ease-in-out;
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff8c00;
+  }
+
   @media (max-width: 600px) {
-    width: 40px;
-    height: 40px;
-    left: -20px;
-    font-size: 1rem;
+    left: -2px;
+    width: 14px;
+    height: 14px;
+
+    &::after {
+      width: 4px;
+      height: 4px;
+    }
   }
 `;
 
 const Card = styled(motion.div)`
-  background: rgba(25, 25, 35, 0.4); /* Darker, more premium glass */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 30px;
-  margin-left: 50px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 28px 30px;
+  margin-left: 32px;
   width: 100%;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
-  overflow: hidden;
 
   &:hover {
-    transform: translateY(-5px) scale(1.01);
-    border-color: rgba(255, 140, 0, 0.5);
-    box-shadow: 0 10px 40px -10px rgba(255, 140, 0, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 140, 0, 0.25);
+    box-shadow: 0 8px 32px -8px rgba(255, 140, 0, 0.12);
+    transform: translateY(-2px);
   }
 
-  /* Premium Shine Effect */
+  /* Subtle top highlight */
   &::after {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    left: 24px;
+    right: 24px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    opacity: 0.5;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
   }
 
   @media (max-width: 600px) {
-    margin-left: 30px;
-    padding: 24px;
+    margin-left: 20px;
+    padding: 22px 20px;
   }
+`;
+
+const CardHeader = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+`;
+
+const IconBox = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 140, 0, 0.08);
+  border: 1px solid rgba(255, 140, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff8c00;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+
+  @media (max-width: 600px) {
+    width: 34px;
+    height: 34px;
+    font-size: 0.95rem;
+  }
+`;
+
+const HeaderText = styled.div`
+  flex: 1;
 `;
 
 const Degree = styled.h3`
-  font-size: 1.9rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 600;
   color: #ffffff;
-  letter-spacing: -0.5px;
-  margin: 0 0 8px 0;
-  
+  letter-spacing: -0.3px;
+  margin: 0 0 3px 0;
+  line-height: 1.35;
+
   @media (max-width: 600px) {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
 `;
 
-const Specialization = styled.h4`
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #00ffea; /* Neon Blue */
-  text-shadow: 0 0 10px rgba(0, 255, 234, 0.4);
-  margin: 0 0 15px 0;
-  font-family: 'Consolas', monospace;
-  
-  @media (max-width: 600px) {
-    font-size: 1.05rem;
-  }
+const Spec = styled.span`
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
 `;
 
 const CollegeName = styled.div`
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #ff8c00;
-  margin: 0 0 12px 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  
-  svg {
-    color: #ff8c00;
-    font-size: 1.2rem;
-  }
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: rgba(0, 255, 234, 0.8);
+  margin-top: 2px;
 `;
 
-const DetailsRow = styled.div`
+const MetaRow = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
-  font-size: 0.95rem;
-  color: #ccc;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
 `;
 
-const DetailItem = styled.span`
+const MetaItem = styled.span`
   display: flex;
   align-items: center;
   gap: 4px;
 `;
 
 const Separator = styled.span`
-  color: rgba(255, 255, 255, 0.2);
-  
+  color: rgba(255, 255, 255, 0.15);
   @media (max-width: 600px) {
     display: none;
   }
 `;
 
 const GradeBadge = styled.span`
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  padding: 4px 12px;
-  border-radius: 10px;
-  font-size: 0.9rem;
+  background: rgba(255, 140, 0, 0.08);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.82rem;
   font-weight: 500;
-  color: #ccc;
+  color: #ff8c00;
 `;
 
 const Education = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.3 } }
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 100 } }
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
   };
 
   return (
@@ -236,77 +255,73 @@ const Education = () => {
       id="education"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true, amount: 0.15 }}
       variants={containerVariants}
     >
-      <Heading>Education Journey</Heading>
+      <Heading>Education</Heading>
 
       <TimelineContainer>
         <TimelineLine />
 
-        {/* Masters */}
         <TimelineItem variants={itemVariants}>
-          <IconWrapper>
-            <FaGraduationCap />
-          </IconWrapper>
+          <NodeDot />
           <Card>
-            <Degree>Masters of Engineering</Degree>
-            <Specialization>Computer Science</Specialization>
-            <CollegeName>
-              Birla Institute of Science and Technology (BITS)
-            </CollegeName>
-            <DetailsRow>
-              <DetailItem>Aug 2024 – June 2026</DetailItem>
-              <Separator>•</Separator>
-              <DetailItem>Pilani, Rajasthan</DetailItem>
-              <Separator>•</Separator>
+            <CardHeader>
+              <IconBox><FaGraduationCap /></IconBox>
+              <HeaderText>
+                <Degree>Masters of Engineering <Spec>— Computer Science</Spec></Degree>
+                <CollegeName>Birla Institute of Science and Technology (BITS)</CollegeName>
+              </HeaderText>
+            </CardHeader>
+            <MetaRow>
+              <MetaItem>Aug 2024 – June 2026</MetaItem>
+              <Separator>·</Separator>
+              <MetaItem>Pilani, Rajasthan</MetaItem>
+              <Separator>·</Separator>
               <GradeBadge>8.4 CGPA</GradeBadge>
-            </DetailsRow>
+            </MetaRow>
           </Card>
         </TimelineItem>
 
-        {/* Bachelors */}
         <TimelineItem variants={itemVariants}>
-          <IconWrapper>
-            <FaUniversity />
-          </IconWrapper>
+          <NodeDot />
           <Card>
-            <Degree>Bachelors of Technology</Degree>
-            <Specialization>Computer Science & Engineering</Specialization>
-            <CollegeName>
-              Bharati Vidyapeeth's College of Engineering
-            </CollegeName>
-            <DetailsRow>
-              <DetailItem>Aug 2020 – June 2024</DetailItem>
-              <Separator>•</Separator>
-              <DetailItem>New Delhi</DetailItem>
-              <Separator>•</Separator>
+            <CardHeader>
+              <IconBox><FaUniversity /></IconBox>
+              <HeaderText>
+                <Degree>Bachelors of Technology <Spec>— Computer Science & Engineering</Spec></Degree>
+                <CollegeName>Bharati Vidyapeeth's College of Engineering, GGSIPU</CollegeName>
+              </HeaderText>
+            </CardHeader>
+            <MetaRow>
+              <MetaItem>Aug 2020 – June 2024</MetaItem>
+              <Separator>·</Separator>
+              <MetaItem>New Delhi</MetaItem>
+              <Separator>·</Separator>
               <GradeBadge>8.94 CGPA</GradeBadge>
-            </DetailsRow>
+            </MetaRow>
           </Card>
         </TimelineItem>
 
-        {/* School */}
         <TimelineItem variants={itemVariants}>
-          <IconWrapper>
-            <FaSchool />
-          </IconWrapper>
+          <NodeDot />
           <Card>
-            <Degree>12th Standard</Degree>
-            <Specialization>PCM with Computer Science</Specialization>
-            <CollegeName>
-              St. Andrews Scots Sr Sec School
-            </CollegeName>
-            <DetailsRow>
-              <DetailItem>April 2019 – March 2020</DetailItem>
-              <Separator>•</Separator>
-              <DetailItem>New Delhi</DetailItem>
-              <Separator>•</Separator>
+            <CardHeader>
+              <IconBox><FaSchool /></IconBox>
+              <HeaderText>
+                <Degree>12th Standard <Spec>— PCM with Computer Science</Spec></Degree>
+                <CollegeName>St. Andrews Scots Sr Sec School</CollegeName>
+              </HeaderText>
+            </CardHeader>
+            <MetaRow>
+              <MetaItem>April 2019 – March 2020</MetaItem>
+              <Separator>·</Separator>
+              <MetaItem>New Delhi</MetaItem>
+              <Separator>·</Separator>
               <GradeBadge>95% (CBSE Board)</GradeBadge>
-            </DetailsRow>
+            </MetaRow>
           </Card>
         </TimelineItem>
-
       </TimelineContainer>
     </EducationSection>
   );

@@ -4,36 +4,27 @@ import { Link } from 'react-scroll';
 import styled, { keyframes } from 'styled-components';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
-// Keyframes for glowing effect on hover
-const glowAnimation = keyframes`
-  0% {
-    text-shadow: 0 0 5px #FF0000, 0 0 10px #FF0000, 0 0 15px #FF0000;
-  }
-  50% {
-    text-shadow: 0 0 20px #FF0000, 0 0 30px #FF4500, 0 0 40px #FFD700, 0 0 50px #FFD700;
-  }
-  100% {
-    text-shadow: 0 0 5px #FF0000, 0 0 10px #FF4500, 0 0 15px #FFD700;
-  }
+const subtleGlow = keyframes`
+  0% { text-shadow: 0 0 4px rgba(255, 140, 0, 0.3); }
+  50% { text-shadow: 0 0 12px rgba(255, 140, 0, 0.6), 0 0 20px rgba(224, 30, 55, 0.3); }
+  100% { text-shadow: 0 0 4px rgba(255, 140, 0, 0.3); }
 `;
 
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px;
-  /* Glassmorphism Effect */
-  background: rgba(255, 255, 255, 0.05); /* Very transparent white for "frost" */
-  backdrop-filter: blur(20px);           /* Stronger blur */
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  
+  padding: 12px 40px;
+  background: rgba(10, 10, 15, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 140, 0, 0.08);
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 100;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Softer shadow */
-  
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+
   @media (max-width: 768px) {
     padding: 10px 16px;
   }
@@ -44,42 +35,62 @@ const NavLinks = styled.div`
   justify-content: space-between;
   align-items: center;
   width: auto;
-  gap: 10px;
-  flex-wrap: nowrap; /* Ensure all links stay in one row */
+  gap: 4px;
+  flex-wrap: nowrap;
 
   @media (max-width: 768px) {
-    display: none; /* Hide in mobile; use menu */
+    display: none;
   }
 `;
 
 const NavLink = styled(Link)`
   text-decoration: none;
-  font-size: 1rem; /* Slightly smaller font size */
-  padding: 8px 12px; /* Reduce padding */
-  margin: 0 5px; /* Minimize margin between links */
-  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  margin: 0 2px;
+  border-radius: 8px;
   background-color: transparent;
-  border: 2px solid transparent;
+  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-image: linear-gradient(45deg, #FF0000, #FF4500, #FFD700); /* Gradient effect for text */
-  -webkit-background-clip: text; /* Clips the background to the text */
-  color: transparent; /* Make text color transparent so background is visible */
-  text-shadow: none;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.3px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ff8c00, #e01e37);
+    border-radius: 1px;
+    transition: width 0.3s ease;
+  }
 
   &:hover {
-    /* Apply glow effect on hover */
-    background-image: linear-gradient(45deg, #FF0000, #FF4500, #FFD700);
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: ${glowAnimation} 1.5s infinite alternate;
-    text-shadow: 0 0 20px #FF0000, 0 0 30px #FF4500, 0 0 40px #FFD700, 0 0 50px #FFD700;
-    transform: scale(1.1); /* Slightly enlarge on hover */
+    color: #ffffff;
+    background: rgba(255, 140, 0, 0.08);
+    animation: ${subtleGlow} 2s infinite;
+    
+    &::after {
+      width: 60%;
+    }
+  }
+
+  &.active {
+    color: #ff8c00;
+    
+    &::after {
+      width: 60%;
+    }
   }
 
   &:active {
-    /* Slightly scale down when clicked */
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
 `;
 
@@ -87,9 +98,15 @@ const MobileMenuButton = styled.button`
   display: none;
   background: transparent;
   border: none;
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   padding: 8px;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #ff8c00;
+  }
+
   @media (max-width: 768px) {
     display: inline-flex;
     align-items: center;
@@ -102,58 +119,86 @@ const MobileMenu = styled.div`
   position: absolute;
   top: 60px;
   right: 16px;
-  /* Glassmorphism for Menu */
-  background: rgba(45, 46, 50, 0.7);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  
-  border-radius: 10px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-  padding: 10px;
+  background: rgba(10, 10, 20, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 140, 0, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  padding: 12px 8px;
   z-index: 200;
+
   @media (max-width: 768px) {
     display: ${({ open }) => (open ? 'flex' : 'none')};
     flex-direction: column;
-    gap: 4px;
+    align-items: center;
+    gap: 2px;
     min-width: 180px;
   }
 `;
-const Title = styled.h1`
-  font-size: 2rem;
+
+const Brand = styled.h1`
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 0;
-  background: linear-gradient(to right, #ff8c00, #e01e37);
+  background: linear-gradient(135deg, #ff8c00, #e01e37);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+  cursor: default;
 `;
+
 const Navbar = ({ darkMode, toggleTheme }) => {
   const [open, setOpen] = useState(false);
   const closeMenu = () => setOpen(false);
+
+  const navItems = [
+    'home', 'about', 'skills', 'education',
+    'experience', 'projects', 'achievements', 'contact'
+  ];
+
+  const labels = {
+    home: 'Home', about: 'About', skills: 'Skills',
+    education: 'Education', experience: 'Experience',
+    projects: 'Projects', achievements: 'Achievements', contact: 'Contact'
+  };
+
   return (
     <Nav>
-      <Title>Welcome!</Title>
+      <Brand>Welcome!</Brand>
       <NavLinks>
-        <NavLink to="home" smooth={true} duration={500} offset={-60}>Home</NavLink>
-        <NavLink to="about" smooth={true} duration={500} offset={-60}>About</NavLink>
-        <NavLink to="skills" smooth={true} duration={500} offset={-60}>Skills</NavLink>
-        <NavLink to="education" smooth={true} duration={500} offset={-60}>Education</NavLink>
-        <NavLink to="experience" smooth={true} duration={500} offset={-60}>Experience</NavLink>
-        <NavLink to="projects" smooth={true} duration={500} offset={-60}>Projects</NavLink>
-        <NavLink to="achievements" smooth={true} duration={500} offset={-60}>Achievements</NavLink>
-        <NavLink to="contact" smooth={true} duration={500} offset={-60}>Contact</NavLink>
+        {navItems.map(item => (
+          <NavLink
+            key={item}
+            to={item}
+            smooth={true}
+            duration={500}
+            offset={-60}
+            spy={true}
+            activeClass="active"
+          >
+            {labels[item]}
+          </NavLink>
+        ))}
       </NavLinks>
       <MobileMenuButton aria-label="Menu" onClick={() => setOpen(!open)}>
         {open ? <FaTimes size={22} /> : <FaBars size={22} />}
       </MobileMenuButton>
       <MobileMenu open={open} onClick={closeMenu}>
-        <NavLink to="home" smooth={true} duration={500} offset={-60} onClick={closeMenu}>Home</NavLink>
-        <NavLink to="about" smooth={true} duration={500} offset={-60} onClick={closeMenu}>About</NavLink>
-        <NavLink to="skills" smooth={true} duration={500} offset={-60} onClick={closeMenu}>Skills</NavLink>
-        <NavLink to="education" smooth={true} duration={500} offset={-60} onClick={closeMenu}>Education</NavLink>
-        <NavLink to="experience" smooth={true} duration={500} offset={-60} onClick={closeMenu}>Experience</NavLink>
-        <NavLink to="projects" smooth={true} duration={500} offset={-60} onClick={closeMenu}>Projects</NavLink>
-        <NavLink to="achievements" smooth={true} duration={500} offset={-60} onClick={closeMenu}>Achievements</NavLink>
-        <NavLink to="contact" smooth={true} duration={500} offset={-60} onClick={closeMenu}>Contact</NavLink>
+        {navItems.map(item => (
+          <NavLink
+            key={item}
+            to={item}
+            smooth={true}
+            duration={500}
+            offset={-60}
+            spy={true}
+            activeClass="active"
+            onClick={closeMenu}
+          >
+            {labels[item]}
+          </NavLink>
+        ))}
       </MobileMenu>
     </Nav>
   );
