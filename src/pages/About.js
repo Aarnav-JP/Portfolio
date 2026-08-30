@@ -110,6 +110,38 @@ const Highlight = styled.span`
   font-weight: 500;
 `;
 
+const HighlightLink = styled.a`
+  color: ${props => props.$color || '#ff8c00'};
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px ${props => props.$color || '#ff8c00'};
+  }
+  
+  /* Underline effect */
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: ${props => props.$color || '#ff8c00'};
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+  
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+`;
+
 const AnimationPanel = styled(motion.div)`
   flex: 0.8;
   display: flex;
@@ -219,18 +251,16 @@ const About = () => {
 
           <SectionLabel>WHO I AM</SectionLabel>
           <Paragraph>
-            Hello! I'm <Highlight $color="rgba(0, 255, 234, 0.9)">Aarnav JP</Highlight>, a Computer Science Engineering student with a passion for
-            tackling new challenges and a drive to constantly learn, grow, and excel in software
-            development. I'm currently pursuing my <Highlight>Masters</Highlight> at the <Highlight>Birla Institute of Science and
-              Technology - Pilani</Highlight>, set to graduate in 2026.
+            Hey there! I'm <Highlight $color="rgba(0, 255, 234, 0.9)">Aarnav J P</Highlight>, a <Highlight>Senior Software Engineer</Highlight> at <Highlight>Marvell Technology</Highlight>. 
+            I spend my days deep in the driver side of Marvell's Octeon SoCs (CN9K, CN10K, CN20K), obsessed with pushing packets blazingly fast through data-plane frameworks like <Highlight $color="rgba(168, 85, 247, 0.9)">DPDK</Highlight>, <Highlight $color="rgba(168, 85, 247, 0.9)">ODP</Highlight>, and <Highlight $color="rgba(168, 85, 247, 0.9)">VPP</Highlight>.
+            I'm also a proud open-source contributor to <HighlightLink href="https://git.dpdk.org/dpdk/log/?qt=author&q=Aarnav" target="_blank" rel="noopener noreferrer" title="View my DPDK contributions">DPDK</HighlightLink>, and <HighlightLink href="https://git.fd.io/vpp/log/?qt=grep&q=Aarnav" target="_blank" rel="noopener noreferrer" title="View my VPP contributions">VPP (fd.io)</HighlightLink>, and hold a Master's degree from my alma mater, <Highlight>BITS Pilani</Highlight>.
           </Paragraph>
 
-          <SectionLabel>MY JOURNEY</SectionLabel>
+          <SectionLabel>BEYOND THE DRIVERS</SectionLabel>
           <Paragraph>
-            My journey in tech has cultivated a strong foundation in <Highlight $color="rgba(168, 85, 247, 0.9)">competitive programming</Highlight>,
-            <Highlight $color="rgba(168, 85, 247, 0.9)"> data structures</Highlight>, and <Highlight $color="rgba(168, 85, 247, 0.9)">algorithms</Highlight>, with hands-on experience in <Highlight>C++</Highlight>, <Highlight>Python</Highlight>, <Highlight>Machine
-              Learning</Highlight>, and the <Highlight>MERN stack</Highlight>. I'm excited to step into the software engineering world
-            and build impactful solutions that meet real-world needs.
+            Outside of the kernel and networking stack, I enjoy building scalable <Highlight $color="rgba(168, 85, 247, 0.9)">cloud-native systems</Highlight> and polished full-stack products. 
+            I love exploring <Highlight>Data/DL problems</Highlight>—but only when they're actually measurable and worth optimizing! 
+            Day in and day out, I'm constantly learning and trying to build cool things at the intersection of <Highlight $color="rgba(0, 255, 234, 0.9)">astrophysics</Highlight> and <Highlight $color="rgba(0, 255, 234, 0.9)">finance</Highlight>.
           </Paragraph>
         </TextPanel>
 

@@ -282,6 +282,66 @@ const Experience = () => {
                 <CompanyName href="https://www.marvell.com/" target="_blank" rel="noopener noreferrer">
                   Marvell Technology
                 </CompanyName>
+                <RoleTitle>Senior Software Engineer</RoleTitle>
+                <DateBadge>July 2026 – Present</DateBadge>
+              </HeaderText>
+            </CardHeader>
+            <BulletList>
+              <BulletItem>
+                Patched critical out-of-bounds write vulnerabilities in DPDK CN9K, CN10K and CN20K inline IPsec and DES3 session handling, preventing arbitrary memory corruption and strengthening driver security.
+              </BulletItem>
+              <BulletItem>
+                Debugged VPP initialization failures on CN10K platforms by implementing PCI BAR size APIs support to enforce 64KB virtual address alignment across varying kernel page sizes.
+              </BulletItem>
+              <BulletItem>
+                Debugged and rectified hardware driver errors in CN20K IPsec fragmented packet reassembly tests, restoring byte-perfect compliance with reference vectors.
+              </BulletItem>
+              <BulletItem>
+                Added feature support for full inline multi-segment and multi-fragment processing for CN10K and CN20K architectures, maintaining the fast path throughput for VPP.
+              </BulletItem>
+            </BulletList>
+          </Card>
+        </TimelineItem>
+
+        <TimelineItem variants={itemVariants}>
+          <NodeDot />
+          <Card>
+            <CardHeader>
+              <IconBox><FaBriefcase /></IconBox>
+              <HeaderText>
+                <CompanyName href="https://www.marvell.com/" target="_blank" rel="noopener noreferrer">
+                  Marvell Technology
+                </CompanyName>
+                <RoleTitle>Software Engineering Intern</RoleTitle>
+                <DateBadge>January 2026 – July 2026</DateBadge>
+              </HeaderText>
+            </CardHeader>
+            <BulletList>
+              <BulletItem>
+                Optimized DPDK/ODP IPsec packet throughput from 23 Mpps to 32 Mpps by eliminating PRNG bottlenecks, caching security contexts, and introducing memory prefetching.
+              </BulletItem>
+              <BulletItem>
+                Resolved Out-of-Place (OOP) IPsec hardware buffer exhaustion by orchestrating dynamic full-sized meta-buffer allocations across hardware components.
+              </BulletItem>
+              <BulletItem>
+                Fixed critical race conditions and double-free bugs in ODP NPA buffer management utilizing low-level memory barriers (rte_io_wmb) for robust thread synchronization.
+              </BulletItem>
+              <BulletItem>
+                Led the migration of legacy networking utilities to modern iproute2 in SDK/ODP scripts, ensuring byte-identical configurations and seamless integration for enterprise clients.
+              </BulletItem>
+            </BulletList>
+          </Card>
+        </TimelineItem>
+
+        <TimelineItem variants={itemVariants}>
+          <NodeDot />
+          <Card>
+            <CardHeader>
+              <IconBox><FaBriefcase /></IconBox>
+              <HeaderText>
+                <CompanyName href="https://www.marvell.com/" target="_blank" rel="noopener noreferrer">
+                  Marvell Technology
+                </CompanyName>
                 <RoleTitle>Software Engineering Intern</RoleTitle>
                 <DateBadge>May 2025 – July 2025</DateBadge>
               </HeaderText>
@@ -321,26 +381,6 @@ const Experience = () => {
           </Card>
         </TimelineItem>
 
-        <TimelineItem variants={itemVariants}>
-          <NodeDot />
-          <Card>
-            <CardHeader>
-              <IconBox><FaBriefcase /></IconBox>
-              <HeaderText>
-                <CompanyName href="https://www.amazon.science/academic-engagements/amazon-launches-annual-ml-summer-school-in-india" target="_blank" rel="noopener noreferrer">
-                  Amazon ML Summer School
-                </CompanyName>
-                <RoleTitle>Apprenticeship</RoleTitle>
-                <DateBadge>July 2022</DateBadge>
-              </HeaderText>
-            </CardHeader>
-            <BulletList>
-              <BulletItem>
-                Mastered 8 core ML domains—including Supervised Learning, Deep Neural Networks (DNNs), and Reinforcement Learning—through hands-on projects, achieving top 10% cohort performance in probabilistic modeling and causal inference challenges.
-              </BulletItem>
-            </BulletList>
-          </Card>
-        </TimelineItem>
       </TimelineContainer>
     </ExperienceSection>
   );

@@ -11,6 +11,7 @@ import About from './pages/About';
 import Skills from './pages/Skills';
 import Experience from './pages/Experience';
 import Achievements from './pages/Achievements';
+import Profiles from './pages/Profiles';
 import Contact from './pages/Contact';
 import Education from './pages/Education';
 import CursorEffect from './components/CursorEffect';
@@ -33,6 +34,7 @@ const App = () => {
       <Experience />
       <Projects />
       <Achievements />
+      <Profiles />
       <Contact />
     </ThemeProvider>
   );
