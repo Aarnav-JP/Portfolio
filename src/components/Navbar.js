@@ -154,13 +154,14 @@ const Navbar = ({ darkMode, toggleTheme }) => {
 
   const navItems = [
     'home', 'about', 'skills', 'education',
-    'experience', 'projects', 'achievements', 'contact'
+    'experience', 'projects', 'achievements', 'profiles', 'contact'
   ];
 
   const labels = {
     home: 'Home', about: 'About', skills: 'Skills',
     education: 'Education', experience: 'Experience',
-    projects: 'Projects', achievements: 'Achievements', contact: 'Contact'
+    projects: 'Projects', achievements: 'Achievements',
+    profiles: 'Profiles', contact: 'Contact'
   };
 
   return (

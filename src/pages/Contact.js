@@ -9,24 +9,23 @@ const fadeIn = keyframes`
 `;
 
 const ContactSection = styled(motion.section)`
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  padding: 80px 5%;
+  padding: 50px 5% 80px;
   position: relative;
   overflow: hidden;
-  scroll-margin-top: 100px;
+  scroll-margin-top: 80px;
 
   @media (max-width: 900px) {
-    padding: 80px 6% 60px;
+    padding: 40px 6% 60px;
   }
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
-  gap: 60px;
+  gap: 40px;
   max-width: 1000px;
   width: 100%;
   align-items: center;
@@ -34,7 +33,7 @@ const ContentWrapper = styled.div`
   
   @media (max-width: 900px) {
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     text-align: center;
   }
 `;

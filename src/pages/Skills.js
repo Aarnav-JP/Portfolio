@@ -310,26 +310,26 @@ const Skills = () => {
         <CardsWrapper>
           <SkillCard $accentColor="#00ffea">
             <CardHeader>
-              <CardIconBox $color="#00ffea">🤖</CardIconBox>
+              <CardIconBox $color="#00ffea">💻</CardIconBox>
               <CardTextGroup>
-                <CardTitle>Machine Learning</CardTitle>
-                <CardSubtitle $color="rgba(0, 255, 234, 0.6)">AI & Data Science</CardSubtitle>
+                <CardTitle>Development</CardTitle>
+                <CardSubtitle $color="rgba(0, 255, 234, 0.6)">Full Stack Infra & ML/DL systems</CardSubtitle>
               </CardTextGroup>
             </CardHeader>
             <CardDescription>
-              Machine Learning has sharpened my ability to create data-driven models that solve complex problems. By working with algorithms and neural networks, I focus on extracting insights and making smarter predictions for real-world applications.
+              I build scalable, event-driven microservices on AWS/GCP and highly interactive full-stack platforms using Next.js and the MERN stack. My interests lie in blending modern frontend frameworks with robust distributed data pipelines, MapReduce clusters, and real-time streaming architectures.
             </CardDescription>
           </SkillCard>
           <SkillCard $accentColor="#ff8c00">
             <CardHeader>
-              <CardIconBox $color="#ff8c00">💻</CardIconBox>
+              <CardIconBox $color="#ff8c00">⚙️</CardIconBox>
               <CardTextGroup>
-                <CardTitle>Web Development</CardTitle>
-                <CardSubtitle $color="rgba(255, 140, 0, 0.6)">Full Stack MERN</CardSubtitle>
+                <CardTitle>Systems & Kernel</CardTitle>
+                <CardSubtitle $color="rgba(255, 140, 0, 0.6)">Driver & Linux Development</CardSubtitle>
               </CardTextGroup>
             </CardHeader>
             <CardDescription>
-              As a Full Stack Web Developer specializing in the MERN stack, I create dynamic, responsive, and visually engaging web applications. My passion lies in crafting seamless user experiences and developing efficient backend systems.
+              I specialize in high-performance data-plane frameworks (DPDK, ODP, VPP) and Linux driver development for multi-core SoCs. My deep interest lies in optimizing complex network stacks, building virtualization APIs, and ensuring robust kernel-level synchronization and cache-aligned memory management, with making driver fast path optimizations and features.
             </CardDescription>
           </SkillCard>
           <SkillCard $accentColor="#a855f7">
@@ -337,11 +337,11 @@ const Skills = () => {
               <CardIconBox $color="#a855f7">🧩</CardIconBox>
               <CardTextGroup>
                 <CardTitle>Problem Solving</CardTitle>
-                <CardSubtitle $color="rgba(168, 85, 247, 0.6)">Competitive Programming</CardSubtitle>
+                <CardSubtitle $color="rgba(168, 85, 247, 0.6)">CP, Astrophysics & Finance</CardSubtitle>
               </CardTextGroup>
             </CardHeader>
             <CardDescription>
-              Competitive programming has shaped my critical thinking and strategic approach to solving problems. Through platforms like Codeforces, CodeChef, and CSES, I've mastered algorithms and data structures, while embracing challenges that test and push my limits, transforming obstacles into opportunities.
+              Mastering algorithms through competitive programming drives my approach to complex systems. I apply this critical thinking to fascinating intersections, including deep learning for astrophysics using Vision Transformers, and engineering high-performance SQL-native risk and analytics engines for computational finance.
             </CardDescription>
           </SkillCard>
         </CardsWrapper>

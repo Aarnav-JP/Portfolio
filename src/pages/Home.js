@@ -173,7 +173,7 @@ const Home = () => {
     });
 
     const typedTagline = new Typed(taglineRef.current, {
-      strings: ["Software Engineer | Competitive Programmer | Web Developer"],
+      strings: ["Software Engineer | Competitive Programmer | Developer"],
       typeSpeed: 40,
       backSpeed: 20,
       loop: false,
